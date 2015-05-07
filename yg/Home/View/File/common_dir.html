@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+	<title>下载专区-资料下载</title>
+	<meta charset="utf-8" />
+	<meta name="author" />
+	<meta name="keyword" />
+	<meta name="description" />
+	<link rel="stylesheet" type="text/css" href="_CSS_/common.css">
+	<link rel="stylesheet" type="text/css" href="_CSS_/file_list.css">
+	<script type="text/javascript" src="_JS_/jquery.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".comdir td").click(function(){
+				$(".comdir td").removeClass("activedir");
+				$(this).addClass("activedir");
+			});
+			$(".comdir td").dblclick(function(){
+				// alert("hehe");
+				location.href = "http://www.baidu.com";
+			});
+		});
+	</script>
+</head>
+<body>
+	<include file="Common/header" />
+
+	<div id="content">
+		<div id="left">
+	    	<div class="list_header">下载专区</div>
+	        <div class="">
+	        	<ul class="msg_list">
+					<li class="curr_title"><a href="stripline.html">资料下载</a></li>
+		        	<li ><a href="stripline.html">软件下载</a></li>
+	            </ul> 
+	        </div>
+	        
+	        <div class="left_bottom"></div>
+	    </div>
+
+	    <div id="right">
+	    	<div class="right_title">
+	    		<ul class="breadcrumbs">
+					<li ><span>&gt;&gt;</span><a href="#">公共文件夹</a> </li>
+				</ul>
+	    	</div>
+        	<div class="right_content">
+        		<table class="comdir">
+        			<tr>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        			</tr>
+        			<tr>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        			</tr>
+        			<tr>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        				<td><img src="_IMG_/dir_bg.png"><br><label>条线管理</label></td>
+        			</tr>
+        		</table>
+	        </div>
+        </div>
+	</div>
+
+	<div class="barrier"></div>
+	<include file="Common/footer" />
+
+</body>
+

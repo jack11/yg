@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<title>通讯录</title>
+	<meta charset="utf-8" />
+	<meta name="author" />
+	<meta name="keyword" />
+	<meta name="description" />
+	<link rel="stylesheet" type="text/css" href="_CSS_/common.css">
+	<link rel="stylesheet" type="text/css" href="_CSS_/communication.css">
+	<script type="text/javascript" src="_JS_/jquery.js"></script>
+	<script type="text/javascript" src="_JS_/index.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".right_content tr:odd").css({background: "#F7F7F7"}); // 1, 3 行
+			console.info($(".right_content tr:odd td"));
+			$(".right_content tr:odd td").mouseover(function() {
+			  	$(this).css({background: "#ffffff",cursor:"pointer"});
+			}).mouseout(function(){
+				$(this).css({background: "#F7F7F7"});
+			});
+		});
+	</script>
+</head>
+<body>
+	<include file="Common/header" />
+
+	<div id="content">
+		<div id="left">
+	    	<div class="list_header">{$left_nav[0]['name']}</div>
+	        <div class="">
+	        	<ul class="msg_list">
+	        		<foreach name="left_nav[1]" item="v">
+	        			<li class="{$v.curr}"><a href="{:U("Communication/index?c=$v[id]")}">{$v.name}</a></li>
+	        		</foreach>
+	            </ul> 
+	        </div>
+	        
+	        <div class="left_bottom"></div>
+	    </div>
+
+	    <div id="right">
+	    	<div class="right_title">
+	    		<ul class="breadcrumbs">
+					<foreach name="right_nav" item="v">
+						<li ><span>&gt;</span><a href="{:U("Communication/index?c=$v[id]")}">{$v.name}</a> </li>
+					</foreach>
+				</ul>
+	    	</div>
+        	<div class="right_content">
+	        	<table>
+	        		<thead><th>姓名</th><th>岗位</th><th>座机</th><th>电话</th><th>所属部门</th></thead>
+	        		<tr><td>张三</td><td>业务主办</td><td>0759-2533283</td><td>18402060706</td><td>办公室</td></tr>
+	        		<tr><td>张三</td><td>业务主办</td><td>0759-2533283</td><td>18402060706</td><td>办公室</td></tr>
+	        		<tr><td>张三</td><td>业务主办</td><td>0759-2533283</td><td>18402060706</td><td>办公室</td></tr>
+	        		<tr><td>张三</td><td>业务主办</td><td>0759-2533283</td><td>18402060706</td><td>办公室</td></tr>
+	        	</table>
+	        </div>
+	        <div id="pager">
+	        	<div class="all_page">共 8 页</div>
+	        	<ul>
+	        		<li><a title="首页" href="#">&lt;&lt;</a></li>
+	        		<li><a title="上一页" href="#">&lt;</a></li>
+	        		<li><a href="#">1</a></li>
+	        		<li><a href="#">2</a></li>
+	        		<li><a href="#" class="active">3</a></li>
+	        		<li><a href="#">4</a></li>
+	        		<li><a href="#">5</a></li>
+	        		<li><a href="#">6</a></li>
+	        		<li><a href="#">7</a></li>
+	        		<li><a href="#">8</a></li>
+	        		<li><a title="下一页" href="#">&gt;</a></li>
+	        		<li><a title="尾页" href="#">&gt;&gt;</a></li>
+	        	</ul>
+	        	<!-- <div class="to_page">
+	        		<input type="text" value="">
+	        		<a href="#">GO</a>
+	        	</div> -->
+	        </div>
+        </div>
+	</div>
+
+	<div class="barrier"> </div>
+	<include file="Common/footer" />
+
+</body>
+

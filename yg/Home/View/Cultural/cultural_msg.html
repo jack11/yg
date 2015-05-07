@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<title>下载专区-资料下载</title>
+	<meta charset="utf-8" />
+	<meta name="author" />
+	<meta name="keyword" />
+	<meta name="description" />
+	<link rel="stylesheet" type="text/css" href="_CSS_/common.css">
+	<link rel="stylesheet" type="text/css" href="_CSS_/cultural_content.css">
+	<script type="text/javascript" src="_JS_/jquery.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".btn_left").click(function(){
+				var showli = $("#pic_ul li:visible");
+				if(showli.prev().length == 0){
+					showli.hide("slow");
+					$("#pic_ul li:last").show("slow");
+				}else{
+					showli.hide("slow").prev().show("slow");
+				}
+			});
+			$(".btn_right").click(function(){
+				var showli = $("#pic_ul li:visible");
+				if(showli.next().length == 0){
+					showli.hide("slow");
+					$("#pic_ul li:first").show("slow");
+				}else{
+					showli.hide("slow").next().show("slow");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<include file="Common/header" />
+
+	<div id="content">
+		<div id="left">
+	    	<div class="list_header">下载专区</div>
+	        <div class="">
+	        	<ul class="msg_list">
+					<li class="curr_title"><a href="stripline.html">资料下载</a></li>
+		        	<li ><a href="stripline.html">软件下载</a></li>
+	            </ul> 
+	        </div>
+	        
+	        <div class="left_bottom"></div>
+	    </div>
+
+	    <div id="right">
+	    	<div class="right_title">
+	    		<ul class="breadcrumbs">
+					<li ><span>&gt;&gt;</span><a href="#">文化风采</a> </li>
+				</ul>
+	    	</div>
+        	<div class="right_content">
+        		<div class="cultural_title">
+        			<span>青岛未出口鱼片黑名单企业向美</span>
+        		</div>
+        		<div class="cultural_img">
+        			<input class="btn_left" type="button" value="left">
+        			<ul id="pic_ul">
+        				<li class="active"><img src="_IMG_/whshow.png"></li>
+        				<li><img src="_IMG_/whshow1.png"></li>
+        				<li><img src="_IMG_/whshow2.png"></li>
+        				<li><img src="_IMG_/whshow3.png"></li>
+        				<li><img src="_IMG_/whshow4.png"></li>
+        			</ul>
+        			<input class="btn_right" type="button" value="right">
+        		</div>
+        		<p class="cultural_content">
+        			青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美青岛未出口鱼片黑名单企业向美
+        		</p>
+	        </div>
+        </div>
+	</div>
+
+	<div class="barrier"> </div>
+	<include file="Common/footer" />
+
+</body>
+

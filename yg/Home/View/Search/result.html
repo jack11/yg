@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+	<head>
+		<title>具体内容</title>
+		<meta charset="utf-8" />
+		<meta name="author" />
+		<meta name="keyword" />
+		<meta name="description" />
+		<link rel="stylesheet" type="text/css" href="_CSS_/common.css">
+		<link rel="stylesheet" type="text/css" href="_CSS_/result.css">
+
+		<script type="text/javascript" src="_JS_/jquery.js"></script>
+		<script type="text/javascript" src="_JS_/index.js"></script>
+
+		
+		<script>
+			$("#left").ready(function(){
+				$('#left .tabs').each(function(i){
+					var val = $(this).children("input[type='hidden']").val();
+					var set = false;
+					$(this).children('li').each(function(){
+						if($(this).val()==val){
+							$(this).html("<em >› </em>"+$(this).text());
+							$(this).addClass('current');
+							set = true;
+						}else{
+							$(this).html("<em style='color: #fff;'>› </em>"+$(this).html());
+							$(this).children('a').attr('href',$(this).children('a').attr('href')+$(this).val()) ;
+						}
+					});
+					if(set == false){
+						$(this).children('li:first').html("<em >› </em>"+$(this.html()))
+						set = true;
+					}
+				});
+				
+			})
+		</script>
+	</head>
+	<body>
+		<include file="Common/header" />
+		<div id="content">
+			<div id="left">
+				<ul class="tabs">
+					<input type="hidden" value="{$data.time}"id="time_hidden">
+					<li value="0">
+						<a href="{$data.no_time}&time=">全部时间</a>
+					</li>
+					<li value="1">
+						<a href="{$data.no_time}&time=">24小时内</a>
+					</li>
+					<li value="7">
+						<a href="{$data.no_time}&time=">1周内</a>
+					</li>
+					<li value="30">
+						<a href="{$data.no_time}&time=">1月内</a>
+					</li>
+					<li value="365">
+						<a href="{$data.no_time}&time=">1年内</a>
+					</li>
+				</ul>
+				<ul class="tabs">
+					<input type="hidden" value="{$data.type}"id="type_hidden">
+					<li value="0">
+						<a href="{$data.no_type}&type=">标题和全文</a>
+					</li>
+					<li value="1">
+						<a href="{$data.no_type}&type=">全文</a>
+					</li>
+					<li value="2">
+						<a href="{$data.no_time}&type=">标题</a>
+					</li>
+				</ul>
+				<ul class="tabs"> 
+					<input type="hidden" value="{$data.order}"id="order_hidden">
+					<li  value="0">
+						<a href="{$data.no_order}&order=">按时间升序</a>
+					</li>
+					<li value="1">
+						<a href="{$data.no_order}&order=">按时间降序</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div id="center">
+				<div class="search">
+					<div class="search_bar">搜索：</div>
+					<form action="{:U("search/result")}" method="post"> 
+						<input type="hidden" name="submit" value="true" />
+						<input name="keyword" type="text" class="keyword key" value="{$data.keyword}"/>
+						<input type="submit" value=" " class="submit"/>
+					</form>
+					<div class="barrier"></div>
+					<p class="hot_word">
+						<foreach name="data.hotword" item="v">
+							<a href="{:U("search/result")}?keyword={$v.word}"><span>{$v.word}</span></a>
+						</foreach>
+				</div>
+				<div class="result">
+					<p class="count">总搜索到{$data.count}结果</p>
+					<ul class="list">
+						<if condition="$list">
+						<foreach name="list" item="v">
+							<li><a href="{:U("message/index?c=$v[category_id]")}" class="res_cate">[{$v.category_name}]</a> 
+								<a href="{:U("Message/content?c=$v[category_id]&id=$v[id]")}" class="res_title">{$v.title}</a>
+								<br><p class="res_content">{$v.content}哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈</p>
+								<p class="res_time">{$v.uptime|date="Y-m-d",###} - {$v.category_name}</p>
+							</li>
+						</foreach>
+						
+						
+					</ul>
+					<div class="barrier"></div>
+					<div id="pager">
+					{$pageCode}
+					</div>
+					<else />
+					抱歉，没有找到与<span style="color:red;">{$data.keyword}</span>相关的文章。<br>
+					请更换关键字或条件再搜索
+					</if>
+				</div>
+				
+				
+			</div>
+			<div id="right">
+				<ul>
+					<li class="right_title">搜索历史</li>
+					<foreach name="data.history" item='v'>
+						<li><a href="{$v.url}">{$v.keyword}</a></li>
+					</foreach>
+				</ul>
+			</div>
+
+			<!-- <if condition="$list">
+			<ul>
+			<foreach name="list" item="v">
+			<li>[<a href="">{$v.category_name}</a>]<a href="#">{$v.title}</a><br>{$v.content}<br />{$v.uptime|date="Y-m-d",###}</li>
+			</foreach>
+			{$pageCode}
+			</ul>
+			<else />
+			没有搜索到结果
+			</if> -->
+		</div>
+
+		<div class="barrier"></div>
+		<include file="Common/footer" />
+	</body>
+

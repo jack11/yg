@@ -1,0 +1,94 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		if({$op}==1){
+			$("#ptime").html("{$im.uptime|date="Y-m-d H:i:s",###}");
+			$("#fb").val("提交修改");
+			return;
+		}
+		showtime();
+	});
+	
+	function showtime() {
+            today = new Date();
+            y = today.getFullYear();
+            M = today.getMonth() + 1;
+            d = today.getDate();
+            h = today.getHours();
+            m = today.getMinutes();
+            s = today.getSeconds();
+            weekday = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+            w = weekday[today.getDay()];
+            if (m < 10) m = '0' + m;
+            else m = m;
+            if (s < 10) s = '0' + s;
+            else s = s;
+            $("#ptime").html(y + "年" + M + "月" + d + "日 " + h + ":" + m + ":" + s);
+            setTimeout("showtime()", 1000);
+        }
+</script>
+<div class="op_content">
+	<form action="{:U("List/add_detail")}">
+		<table>
+			<tr><td>操作条目：</td><td id="cate">{$item}</td></tr>
+			<tr><td>标题：</td><td class="if_title"><input id="c_title" type="text" value="{$im.title}"></td></tr>
+			<tr><td>当前时间：</td>
+				<td><label id="ptime"></label>
+				</td>
+			</tr>
+			<tr><td>内容：</td><td class="if_content"><textarea id="c_content">{$im.content}</textarea></td></tr>
+			<tr><td></td><td class="if_operate"><input id="fb" type="button" value="发布" />
+				<input id="qx" type="button" value="返回" /></td></tr>
+		</table>
+	</form>
+</div>	
+<script type="text/javascript">
+	$("#fb").click(function(){
+		var type = $("#cate").html();
+		var title = $("#c_title").val();
+		var content = $("#c_content").val();
+		if(isEmpty(title)){
+			alert("请填写" + type + "标题");
+			return;
+		}
+		if(isEmpty(content)){
+			alert("请填写" + type + "内容");
+			return;
+		}
+		if(title.length > 100){
+			alert(type + "标题不能超过100个字符");
+		}
+		var url = "{:U("List/add_detail")}";
+		var upwhere = "";
+		if({$op}==1){
+			url = "{:U("List/update_detail")}";
+			upwhere = "&id=" + {$im.id};
+		}
+		$.ajax({
+		    type: "POST",
+		    url: url,
+		    data: "title="+ title +"&content=" + content +"&type=" + type + upwhere,
+		    success: function(msg){
+		     	alert(msg.info);
+		     	$("#c_title").val("");
+		     	$("#c_content").val("");
+		    }
+		});
+		if({$op}==1){
+			turnSite();
+		}
+	});
+	$("#qx").click(function(){
+		turnSite();
+	});
+	
+	function turnSite(){
+		var url = $("#ban_url").val();
+		$.ajax(
+			{ url: url,
+			  success: function(r){
+				$(".cbody").html(r);
+			  }
+			}
+		);
+	}
+</script>

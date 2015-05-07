@@ -1,0 +1,56 @@
+<?php
+    if(C('LAYOUT_ON')) {
+        echo '{__NOLAYOUT__}';
+    }
+?>
+<!doctype html>
+<html>
+<head>
+	<title>404</title>
+	<meta charset="utf-8" />
+	<meta name="author" />
+	<meta name="keyword" />
+	<meta name="description" />
+	<link rel="stylesheet" type="text/css" href="_CSS_/common.css">
+	<script type="text/javascript" src="_JS_/jquery.js"></script>
+	<style>
+		#content{min-height:300px;height:0;text-align:center;}
+	</style>
+
+</head>
+<body>
+	<include file="Common/header" />
+	
+	<div id="content">
+		<div class="system-message">
+		<?php if(isset($message)) {?>
+		<h1>跳转提醒</h1>
+		<p class="success"><?php echo($message); ?></p>
+		<?php }else{?>
+		<h1>错误提醒</h1>
+		<p class="error"><?php echo($error); ?></p>
+		<?php }?>
+		<p class="detail"></p>
+		<p class="jump">
+		页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+		</p>
+		</div>
+		<script type="text/javascript">
+		(function(){
+		var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+			var time = --wait.innerHTML;
+			if(time <= 0) {
+				location.href = href;
+				clearInterval(interval);
+			};
+		}, 1000);
+		})();
+		</script>
+	</div>
+	
+	
+	
+	<include file="Common/footer" />
+
+</body>

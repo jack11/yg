@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+	<title>综合信息</title>
+	<meta charset="utf-8" />
+	<meta name="author" />
+	<meta name="keyword" />
+	<meta name="description" />
+	<link rel="stylesheet" type="text/css" href="_CSS_/common.css">
+	<link rel="stylesheet" type="text/css" href="_CSS_/list.css">
+	<script type="text/javascript" src="_JS_/jquery.js"></script>
+	<script type="text/javascript" src="_JS_/index.js"></script>
+	
+</head>
+<body>
+	<include file="Common/header"/>
+
+	<div id="content">
+		<div id="left">
+	    	<div class="list_header">{$left_nav[0]['name']}</div>
+	        <div class="">
+	        	<ul class="msg_list">
+	        		<foreach name="left_nav[1]" item="v">
+	        			<li class="{$v.curr}"><a href="{:U("Message/index?c=$v[id]")}">{$v.name}</a></li>
+	        		</foreach>
+	            </ul> 
+	        </div>
+	        
+	        <div class="left_bottom"> </div>
+	    </div>
+
+	    <div id="right">
+	    	<div class="right_title">
+	    		<ul class="breadcrumbs">
+	    			<foreach name="right_nav" item="v">
+						<li ><span>&gt;</span><a href="{:U("Message/index?c=$v[id]")}">{$v.name}</a> </li>
+					</foreach>
+				</ul>
+	    	</div>
+        	<div class="right_content">
+	    		{//<eq name="list" value="array()">}
+	        	<ul>
+	        		<foreach name="list" item="v">
+	        			<li><span>{$v.uptime|date="Y-m-d",###}</span><a href="{:U("Message/content?c=$v[category_id]&id=$v[id]")}">{$v.title}</a></li>
+					</foreach>
+					
+	            	<li><span>2014-07-09</span><a href="__URL__/content/id/1">青岛未出口鱼片上黑名单企业向美青岛未出口鱼片上黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片上黑出口鱼片上黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青青岛未出口鱼片上黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片上上黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片上黑岛未出口鱼片上黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片上黑名单企业向美青岛未出口鱼片上黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片上黑名单企业向美青岛未出口鱼片上黑名单企业向美</a></li>
+	            	<li><span>2014-07-09</span><a href="#">青岛未出口鱼片上黑名单企业向美青岛未出口鱼片上黑名单企业向美</a></li>
+	            </ul>
+	        </div>
+	        <div id="pager">
+	        	{$pageCode}
+	        	
+	        	<!-- <div class="to_page">
+	        		<input type="text" value="">
+	        		<a href="#">GO</a>
+	        	</div> -->
+	        </div>
+	        {/*<else />
+	       	&nbsp; &nbsp; 当前页面没有内容
+	        </eq>*/}
+        </div>
+	</div>
+
+	<div class="barrier"></div>
+	<include file="Common/footer" />
+
+</body>
+

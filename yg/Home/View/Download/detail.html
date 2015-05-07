@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<title>下载专区-资料下载</title>
+	<meta charset="utf-8" />
+	<meta name="author" />
+	<meta name="keyword" />
+	<meta name="description" />
+	<link rel="stylesheet" type="text/css" href="_CSS_/common.css">
+	<link rel="stylesheet" type="text/css" href="_CSS_/down_detail.css">
+	<script type="text/javascript" src="_JS_/jquery.js"></script>
+	<script type="text/javascript" src="_JS_/index.js"></script>
+	
+</head>
+<body>
+	<include file="Common/header" />
+
+	<div id="content">
+		<div id="left">
+	    	<div class="list_header">{$left_nav[0]['name']}</div>
+	        <div class="">
+	        	<ul class="msg_list">
+					<foreach name="left_nav[1]" item="v">
+	        			<li class="{$v.curr}"><a href="{:U("DownLoad/index?c=$v[id]")}">{$v.name}</a></li>
+	        		</foreach>
+	            </ul> 
+	        </div>
+	        
+	        <div class="left_bottom"> </div>
+	    </div>
+
+	    <div id="right">
+	    	<div class="right_title">
+	    		<ul class="breadcrumbs">
+					<foreach name="right_nav" item="v">
+						<li ><span>&gt;</span><a href="{:U("DownLoad/index?c=$v[id]")}">{$v.name}</a> </li>
+					</foreach>
+				</ul>
+	    	</div>
+        	<div class="right_content">
+        		<div class="data_title">
+        			<img src="_UPIMG_/{$data.icon}">
+        			<div class="data_content">
+        				<div class="data_name">{$data.file}</div>
+        				<p class="data_time">上传时间：{$data.uptime|date="Y-m-d",###} | 大小：{$data.size}MB<input type="button" value="下载"></p>
+        			</div>
+        		</div>
+        		<p class="data_introduce">
+        			<span>软件介绍</span>
+        			{$data.description}
+        		</p>
+	        </div>
+        </div>
+	</div>
+
+	<div class="barrier"> </div>
+	<include file="Common/footer" />
+
+</body>
+
