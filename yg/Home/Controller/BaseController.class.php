@@ -3,25 +3,22 @@ namespace Home\Controller;
 use Think\Controller;
 class BaseController extends Controller {
 
-	
-	
 	public function __construct(){
 		
 		parent::__construct();
+		$this->setHeader();
+		
+		$m_goods_class = M('goods_class');
+		
+		//分类
+		$class_list = $m_goods_class->getClassList(array());
+		$class_list = $this->getClassTree($class_list);
 	}
 	
 	protected function _initialize(){
 		
 	}
-	
-	
-	protected function findCurrTitle($title){
-		foreach ($this->first_titles as $key => $value) {
-			if($value['name'] == $title){
-				$this->first_titles[$key]['class'] = 'active';
-			}
-		}
-	}
+
 	
 	protected function error($message='',$jumpUrl='',$ajax=false){
 		if(''===$message){
@@ -48,6 +45,27 @@ class BaseController extends Controller {
 	protected function _empty($name){
 		$this->error();
 	}
+	
+	/**
+	 * 设置头
+	 */
+	protected function setHeader(){
+		header('Content-type:text/html;charset=utf-8');
+	}
+	
+	/**
+	 * 得到树形class
+	 */
+	 protected function getClassTree($class,$deep='2'){
+	 	if(!empty_array($class)){
+	 		return array();
+	 	}
+		
+	 	$tree = array();	//返回数组
+	 	for ($i=0; $i < $deep; $i++) { 
+			 
+		 }
+	 }
 	
 	
 	

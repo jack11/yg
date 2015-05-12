@@ -3,6 +3,11 @@
 namespace Home\Controller;
 class SearchController extends BaseController {
 	
+	public function index(){
+		$this->display('html/search');
+	}
+	
+	
 	public function result(){
 		//是否是按搜索提交的
 		$is_submit = $this->getString('get.submit');
@@ -104,27 +109,5 @@ class SearchController extends BaseController {
 		$this->display('Search/result');
 	}
 
-	protected function noSomethingUrl($something){
-		$params = $this->getArray('get.');
-		$string = rtrim(U('search/result'),'/').'?';
-		foreach ($params as $key => $value) {
-			if($key != $something){
-				$string .= $key.'='.$value.'&';
-			}
-		}
-		return rtrim($string,'&');
-		
-	}
-	
-	protected function jsonToArray($json){
-		$json = json_decode($json);
-		$json = (array)$json;
-		foreach ($json as $key => $value) {
-			if(is_object($value)){
-				$json[$key] = $this->jsonToArray($value);
-			}
-		}
-		return $json;
-	}
 	
 }
