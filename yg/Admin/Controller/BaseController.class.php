@@ -5,18 +5,19 @@ class BaseController extends Controller {
 	
 	public function __construct(){
 		parent::__construct();
+		$this->checkLogin();
 		
 		$this->_showMenu();
+		
 	}
 	
 	protected function _initialize(){
-		if(!$this->isLogined()){
-			//$this->redirect('User/login');
-		}
 	}
-	
-	protected function isLogined(){
-		return !empty($this->getArray('session.admin'));
+
+	protected function checkLogin(){
+		if(!$_SESSION['is_logined']){
+			redirect(ADMIN_URL.'login/index');
+		}
 	}
 	
 	/**

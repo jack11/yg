@@ -12,6 +12,11 @@ define('BIND_MODULE','Admin');
 // 定义应用目录
 define('APP_PATH','./yg/');
 
+
+
+define('ADMIN_URL', '/admin.php/');
+define('TIMESTAMP', time());
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 

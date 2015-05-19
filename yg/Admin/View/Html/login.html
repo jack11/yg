@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>农资商城</title>
+		<script type="text/javascript" src="_JS_/jquery.js"></script>
+		<script type="text/javascript" src="_JS_/common.js"></script>
+		<script type="text/javascript" src="_JS_/jquery.tscookie.js"></script>
+		<script type="text/javascript" src="_JS_/jquery.validation.min.js"></script>
+		<link href="_CSS_/login.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+			body {
+				background-color: #666666;
+				background-image: url("");
+				background-repeat: no-repeat;
+				background-position: center top;
+				background-attachment: fixed;
+				background-clip: border-box;
+				background-size: cover;
+				background-origin: padding-box;
+				width: 100%;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="bg-dot"></div>
+		<div class="login-layout">
+			<div class="top">
+				<h5>一元幸运购电商系统<em></em></h5>
+				<h2>平台管理中心</h2>
+				<h6></h6>
+			</div>
+			<div class="box">
+				<form method="post" id="form_login" action="_ADMIN_URL_/login/login">
+					<input type='hidden' name='formhash' value='uH1IUsViZuJ53ixrvoAkupDoyTBEEol' />
+					<input type="hidden" name="form_submit" value="ok" />
+					<input type="hidden" name="SiteUrl" id="SiteUrl" value="/" />
+					<span> <label>帐号</label>
+						<input name="user_name" id="user_name" autocomplete="off" type="text" class="input-text" required>
+					</span><span> <label>密码</label>
+						<input name="password" id="password" class="input-password" autocomplete="off" type="password" required pattern="[\S]{6}[\S]*"
+						title="密码不少于6个字符">
+					</span><span>
+						<div class="code">
+							<div class="arrow"></div>
+							<div class="code-img"><img src="_ADMIN_URL_/login/getCode" name="codeimage" id="codeimage" border="0"/>
+							</div>
+							<a href="JavaScript:void(0);" id="hide" class="close" title="关闭"><i></i></a><a href="JavaScript:void(0);" onclick="javascript:document.getElementById('codeimage').src='_ADMIN_URL_/login/getCode/t/' + Math.random();" class="change" title="看不清,点击更换验证码"><i></i></a>
+						</div>
+						<input name="code" type="text" required class="input-code" id="captcha" placeholder="输入验证" pattern="[A-z0-9]{4}" title="验证码为4个字符" autocomplete="off" value="" >
+					</span><span>
+						<input name="nchash" type="hidden" value="056fd367" />
+						<input name="" class="input-button" type="submit" value="登录">
+					</span>
+				</form>
+			</div>
+		</div>
+		<div class="bottom">
+			<h5>Powered by xingyungou</h5>
+			<h6 title="© 2014-2019  一元幸运购 Inc."><a href="#" target="_blank">© 2014-2019 一元幸运购 Inc.</a></h6>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				//Random background image
+				var random_bg = Math.floor(Math.random() * 4 + 1);
+				var bg = 'url(_IMG_/login/bg_' + random_bg + '.jpg)';
+				$("body").css("background-image", bg);
+				//Hide Show verification code
+				$("#hide").click(function() {
+					$(".code").fadeOut("slow");
+				});
+				$("#captcha").focus(function() {
+					$(".code").fadeIn("fast");
+				});
+				//跳出框架在主窗口登录
+				if (top.location != this.location)
+					top.location = this.location;
+				$('#user_name').focus();
+				if ($.browser.msie && $.browser.version == "6.0") {
+					window.location.href = 'http://shop.yn.com/admin/templates/default/ie6update.html';
+				}
+				$("#captcha").nc_placeholder();
+			});
+		</script>
+	</body>
+</html>
