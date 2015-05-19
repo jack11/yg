@@ -1,143 +1,421 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<title>中国光大银行湛江分行网站首页</title>
-	<meta charset="utf-8" />
-	<meta name="author" />
-	<meta name="keyword" />
-	<meta name="description" />
-	<link rel="stylesheet" type="text/css" href="_CSS_/index.css">
-	<link rel="stylesheet" type="text/css" href="_CSS_/list.css">
-	<script type="text/javascript" src="_JS_/jquery.js"></script>
-	<script type="text/javascript" src="_JS_/Common.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$.ajax(
-				{ url: "{:U('List/mul')}",
-				  success: function(r){
-					$(".cbody").html(r);
-				  }
-				}
-			);
-			$(".buttons li[furl]").click(function(){
-				$(this).addClass("active").siblings().removeClass("active");
-				$("ul",this).show("slow").find("a:first").addClass("liactive");
-				$(this).siblings().find("ul").hide("slow");
-				var furl = $(this).attr("furl");
-				$.ajax(
-					{ url: furl,
-					  success: function(r){
-    					$(".cbody").html(r);
-					  }
-					}
-				);
-				var title = "后台";
-				if($("ul",this).length > 0 ){
-					title = $("ul a:first",this).html();
-				}else{
-					title = $("span:first",this).html();
-				}
-				$(".banner").html(title + "管理");
-				$("#ban_url").val(furl);
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://mingshop.yn.com:8088/admin/index.php -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+		<title>农资商城</title>
+		<link href="_CSS_/skin_0.css" rel="stylesheet" type="text/css" id="cssfile">
+
+		<script type="text/javascript" src="_JS_/jquery.js"></script>
+		<script type="text/javascript" src="_JS_/jquery.validation.min.js"></script>
+		<script type="text/javascript" src="_JS_/jquery.cookie.js"></script>
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="http://mingshop.yn.com/data/resource/js/html5shiv.js"></script>
+		<script src="http://mingshop.yn.com/data/resource/js/respond.min.js"></script>
+		<![endif]-->
+		<script>
+			//
+			$(document).ready(function() {
+				$('span.bar-btn').click(function() {
+					$('ul.bar-list').toggle('fast');
+				});
 			});
-			$(".tab>li").click(function(event){
-				$("a",this).addClass("liactive");
-				$(this).siblings().find("a").removeClass("liactive");
-				var surl = $("a",this).attr("url");
-				$.ajax(
-					{ url: surl,
-					  success: function(r){
-    					$(".cbody").html(r);
-					  }
-					}
-				);
-				var title = $("a",this).html();
-				$(".banner").html(title + "管理");
-				$("#ban_url").val(surl);
-				event.stopPropagation()
+
+			$(document).ready(function() {
+				var pagestyle = function() {
+					var iframe = $("#workspace");
+					var h = $(window).height() - iframe.offset().top;
+					var w = $(window).width() - iframe.offset().left;
+					if (h < 300)
+						h = 300;
+					if (w < 973)
+						w = 973;
+					iframe.height(h);
+					iframe.width(w);
+				}
+				
+				pagestyle();
+				$(window).resize(pagestyle);
+				//turn location
+				
+				$.cookie('now_location_act',null);
+				if ($.cookie('now_location_act') != null) {
+					openItem($.cookie('now_location_op') + ',' + $.cookie('now_location_act') + ',' + $.cookie('now_location_nav'));
+				} else {
+					$('#mainMenu>ul').first().css('display', 'block');
+					//第一次进入后台时，默认定到欢迎界面
+					$('#item_welcome').addClass('selected');
+					$('#workspace').attr('src', 'http://www.baidu.com');
+				}
+				
+				$('#iframe_refresh').click(function() {
+					var fr = document.frames ? document.frames("workspace") : document.getElementById("workspace").contentWindow;
+					;
+					fr.location.reload();
+				});
+
 			});
-		});
-	</script>
-</head>
-<body>
-	<div id="wrapper">
-		<div id="content">
-			<div class="cright">
-				<div class="controls">
-					<span class="banner">后台管理</span>
-					<input type="hidden" id="ban_url" value="{:U('List/mul')}" />
-					<!-- 用户信息 -->
-					<div class="user-box">
-					</div>
-				</div>
-				<div class="cbody">
-					
-					<!-- <iframe id="cbody" src="Index/first_index" ></iframe> -->
-				</div>
+			//收藏夹
+			function addBookmark(url, label) {
+				if (document.all) {
+					window.external.addFavorite(url, label);
+				} else if (window.sidebar) {
+					window.sidebar.addPanel(label, url, '');
+				}
+			}
+
+			function openItem(args) {
+				closeBg();
+				//cookie
+
+				if ($.cookie('8AC8_sys_key') === null) {
+					/*location.href = 'http://baidu.com';
+					return false;*/
+				}
+				
+				spl = args.split(',');
+				try {
+					act = spl[1];
+					nav = spl[2];
+				} catch(ex) {
+				}
+				if ( typeof (act) == 'undefined') {
+					var nav = args;
+				}
+				$('.actived').removeClass('actived');
+				$('#nav_' + nav).addClass('actived');
+				$('.selected').removeClass('selected');
+				
+				//show
+				$('#mainMenu ul').css('display', 'none');
+				$('#sort_' + nav).css('display', 'block');
+				
+				if ( typeof (act) == 'undefined') {
+					////顶部菜单事件
+					html = $('#sort_' + nav + '>li>dl>dd>ol>li').first().html();
+					str = html.match(/openItem\('(.*)'\)/ig);
+					arg = str[0].split("'");
+					spl = arg[1].split(',');
+					op = spl[0];
+					act = spl[1];
+					nav = spl[2];
+					first_obj = $('#sort_' + nav + '>li>dl>dd>ol>li').first().children('a');
+					$(first_obj).addClass('selected');
+					//crumbs
+					$('#crumbs').html('<span>' + $('#nav_' + nav + ' > span').html() + '</span><span class="arrow">&nbsp;</span><span>' + $(first_obj).text() + '</span>');
+				} else {
+					//左侧菜单事件
+					//location
+					$.cookie('now_location_nav', nav);
+					$.cookie('now_location_act', act);
+					$.cookie('now_location_op', op);
+					$("a[name='item_" + nav + act + "']").addClass('selected');
+					//crumbs
+					$('#crumbs').html('<span>' + $('#nav_' + nav + ' > span').html() + '</span><span class="arrow">&nbsp;</span><span>' + $('#item_' + nav + act).html() + '</span>');
+				}
+				
+				src = '/admin.php/'+act+'/'+op;//'index.php?act=' + act + '&op=' + op;
+				$('#workspace').attr('src', src);
+
+
+
+			}
+
+			$(function() {
+				bindAdminMenu();
+			})
+			function bindAdminMenu() {
+
+				$("[nc_type='parentli']").click(function() {
+					var key = $(this).attr('dataparam');
+					if ($(this).find("dd").css("display") == "none") {
+						$("[nc_type='" + key + "']").slideDown("fast");
+						$(this).find('dt').css("background-position", "-322px -170px");
+						$(this).find("dd").show();
+					} else {
+						$("[nc_type='" + key + "']").slideUp("fast");
+						$(this).find('dt').css("background-position", "-483px -170px");
+						$(this).find("dd").hide();
+					}
+				});
+			}
+		</script>
+		<script type="text/javascript">
+			//显示灰色JS遮罩层
+			function showBg(ct, content) {
+				var bH = $("body").height();
+				var bW = $("body").width();
+				var objWH = getObjWh(ct);
+				$("#pagemask").css({
+					width : bW,
+					height : bH,
+					display : "none"
+				});
+				var tbT = objWH.split("|")[0] + "px";
+				var tbL = objWH.split("|")[1] + "px";
+				$("#" + ct).css({
+					top : tbT,
+					left : tbL,
+					display : "block"
+				});
+				$(window).scroll(function() {
+					resetBg()
+				});
+				$(window).resize(function() {
+					resetBg()
+				});
+			}
+
+			function getObjWh(obj) {
+				var st = document.documentElement.scrollTop;
+				//滚动条距顶部的距离
+				var sl = document.documentElement.scrollLeft;
+				//滚动条距左边的距离
+				var ch = document.documentElement.clientHeight;
+				//屏幕的高度
+				var cw = document.documentElement.clientWidth;
+				//屏幕的宽度
+				var objH = $("#" + obj).height();
+				//浮动对象的高度
+				var objW = $("#" + obj).width();
+				//浮动对象的宽度
+				var objT = Number(st) + (Number(ch) - Number(objH)) / 2;
+				var objL = Number(sl) + (Number(cw) - Number(objW)) / 2;
+				return objT + "|" + objL;
+			}
+
+			function resetBg() {
+				var fullbg = $("#pagemask").css("display");
+				if (fullbg == "block") {
+					var bH2 = $("body").height();
+					var bW2 = $("body").width();
+					$("#pagemask").css({
+						width : bW2,
+						height : bH2
+					});
+					var objV = getObjWh("dialog");
+					var tbT = objV.split("|")[0] + "px";
+					var tbL = objV.split("|")[1] + "px";
+					$("#dialog").css({
+						top : tbT,
+						left : tbL
+					});
+				}
+			}
+
+			//关闭灰色JS遮罩层和操作窗口
+			function closeBg() {
+				$("#pagemask").css("display", "none");
+				$("#dialog").css("display", "none");
+			}
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				var $li = $("#skin li");
+				$li.click(function() {
+					$("#" + this.id).addClass("selected").siblings().removeClass("selected");
+					$("#cssfile").attr("href", "http://mingshop.yn.com/admin/templates/default/css/" + (this.id) + ".css");
+					$.cookie("MyCssSkin", this.id, {
+						path : '/',
+						expires : 10
+					});
+
+					$('iframe').contents().find('#cssfile2').attr("href", "http://mingshop.yn.com/admin/templates/default/css/" + (this.id) + ".css");
+				});
+
+				var cookie_skin = $.cookie("MyCssSkin");
+				if (cookie_skin) {
+					$("#" + cookie_skin).addClass("selected").siblings().removeClass("selected");
+					$("#cssfile").attr("href", "http://mingshop.yn.com/admin/templates/default/css/" + cookie_skin + ".css");
+					$.cookie("MyCssSkin", cookie_skin, {
+						path : '/',
+						expires : 10
+					});
+				}
+			});
+			function addFavorite(url, title) {
+				try {
+					window.external.addFavorite(url, title);
+				} catch (e) {
+					try {
+						window.sidebar.addPanel(title, url, '');
+					} catch (e) {
+						showDialog("请按 Ctrl+D 键添加到收藏夹", 'notice');
+					}
+				}
+			}
+		</script>
+
+	</head>
+
+	<body style="margin: 0px;" scroll="no">
+		<div id="pagemask" style="display: none;"></div>
+		<div id="dialog" style="display: none;">
+			<div class="title">
+				<h3>管理中心导航</h3>
+				<span><a href="JavaScript:void(0);" onclick="closeBg();">关闭</a></span>
+			</div>
+			<div class="content">
+				<dl>
+					<dt>
+						设置
+					</dt>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;base,setting,setting&#39;)">站点设置</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;param,upload,setting&#39;)">上传设置</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;seo,setting,setting&#39;)">SEO设置</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;email,message,setting&#39;)">消息通知</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;system,payment,setting&#39;)">支付方式</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;admin,admin,setting&#39;)">权限设置</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;clear,cache,setting&#39;)">清理缓存</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;perform,perform,setting&#39;)">性能优化</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;search,search,setting&#39;)">搜索设置</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;list,admin_log,setting&#39;)">操作日志</a>
+					</dd>
+					<dd>
+						<a href="javascript:void(0)" onclick="openItem(&#39;index,app,setting&#39;)">app版本</a>
+					</dd>
+				</dl>
+				<!-- <dl>
+				<dt>农资</dt>
+				<dd><a href="javascript:void(0)" onclick="openItem(&#39;goods_class,goods_class,goods&#39;)">分类管理</a></dd>
+				<dd><a href="javascript:void(0)" onclick="openItem(&#39;goods,goods,goods&#39;)">农资管理</a></dd>
+				<dd><a href="javascript:void(0)" onclick="openItem(&#39;type,type,goods&#39;)">类型管理</a></dd>
+				<dd><a href="javascript:void(0)" onclick="openItem(&#39;spec,spec,goods&#39;)">规格管理</a></dd>
+				<dd><a href="javascript:void(0)" onclick="openItem(&#39;list,goods_album,goods&#39;)">图片空间</a></dd>
+				<dd><a href="javascript:void(0)" onclick="openItem(&#39;index,service_fee,goods&#39;)">平台服务费</a></dd>
+				</dl>
+				<dl> -->
+
 			</div>
 		</div>
-		<div id="sidebar">
-			<strong class="logo"><a href="#">光大银行湛江分行后台管理</a></strong>
-			<ul class="buttons">
-				<li furl="{:U('List/mul')}" class="active">
-					<a class="btn ico1"><span>行内通知</span>行内通知</a>
-					<span class="tooltip"><span>行内通知</span></span>
-					<ul class="tab active">
-						<li><a class="liactive" url="{:U('List/mul')}">综合信息</a></li>
-						<li><a url="{:U('List/import')}">重要通知</a></li>
-					</ul>
-				</li>
-				<li furl="{:U('List/bran_msg')}">
-					<a class="btn ico2"><span>分行信息</span>分行信息</a>
-					<span class="tooltip"><span>分行信息</span></span>
-					<ul class="tab">
-						<li><a url="{:U('List/bran_msg')}" class="liactive">分行简报</a></li>
-						<li><a url="{:U('List/bran_iss')}">分行发文</a></li>
-					</ul>
-				</li>
-				<li furl="{:U('Download/xz_word')}">
-					<a class="btn ico3"><span>下载专区</span>下载专区</a>
-					<span class="tooltip"><span>下载专区</span></span>
-					<ul class="tab">
-						<li><a url="{:U('Download/xz_word')}" class="liactive">资料下载</a></li>
-						<li><a url="{:U('Download/xz_soft')}">软件下载</a></li>
-					</ul>
-				</li>
-				<li furl="{:U('Communication/txl')}">
-					<a class="btn ico4"><span>通讯录</span>通讯录</a>
-					<span class="tooltip"><span>通讯录</span></span>
-				</li>
-				<li furl="{:U('Cultural/whfc')}">
-					<a class="btn ico5"><span>文化风采</span>文化风采</a>
-					<span class="tooltip"><span>文化风采</span></span>
-				</li>
-				<li furl="{:U('List/sline?id=1')}">
-					<a class="btn ico6"><span>条线管理</span>条线管理</a>
-					<span class="tooltip"><span>条线管理</span></span>
-					<ul class="tab">
-						<li><a url="{:U('List/sline?id=1')}" class="liactive">对公条线</a></li>
-						<li><a url="{:U('List/sline?id=2')}">零售条线</a></li>
-						<li><a url="{:U('List/sline?id=3')}">运营条线</a></li>
-						<li><a url="{:U('List/sline?id=4')}">风险条线</a></li>
-					</ul>
-				</li>
-				<li furl="{:U('List/depart?id=1')}">
-					<a class="btn ico7"><span>部门管理</span>部门管理</a>
-					<span class="tooltip"><span>部门管理</span></span>
-					<ul class="tab">
-						<li><a url="{:U('List/depart?id=1')}" class="liactive">公司业务部</a></li>
-						<li><a url="{:U('List/depart?id=2')}">零售业务部</a></li>
-						<li><a url="{:U('List/depart?id=3')}">办公室</a></li>
-						<li><a url="{:U('List/depart?id=4')}">计划财务部</a></li>
-						<li><a url="{:U('List/depart?id=5')}">风险管理部</a></li>
-						<li><a url="{:U('List/depart?id=6')}">营业部</a></li>
-						<li><a url="{:U('List/depart?id=7')}">业务一部</a></li>
-						<li><a url="{:U('List/depart?id=8')}">业务二部</a></li>
-					</ul>
-				</li>
-			</ul>
-			<span class="shadow"></span>
-		</div>
-	</div>
-</body>
+		<table style="width: 100%;" id="frametable" height="100%" width="100%" cellpadding="0" cellspacing="0">
+			<tbody>
+				<tr>
+					<td colspan="2" height="90" class="mainhd">
+					<div class="layout-header">
+						<!-- Title/Logo - can use text instead of image -->
+						<div id="title">
+							<a href="_JS_/农资商城.html"></a>
+						</div>
+						<!-- Top navigation -->
+						<div id="topnav" class="top-nav">
+							<ul>
+								<li class="adminid" title="您好:admin">
+									您好&nbsp;:&nbsp;<strong>admin</strong>
+								</li>
+								<li>
+									<a href="http://mingshop.yn.com:8088/admin/index.php?act=index&op=modifypw" target="workspace"><span>修改密码</span></a>
+								</li>
+								<li>
+									<a href="http://mingshop.yn.com:8088/admin/index.php?act=index&op=logout" title="退出"><span>退出</span></a>
+								</li>
+								<li>
+									<a href="http://mingshop.yn.com/shop" target="_blank" title="农资商城首页"><span>农资商城首页</span></a>
+								</li>
+							</ul>
+						</div>
+						<!-- End of Top navigation -->
+						<!-- Main navigation -->
+						<nav id="nav" class="main-nav">
+							<ul>
+								<foreach name="top_menus_list" key='key' item='v'>
+									<li>
+										<a class="link" id="nav_{$v.link}" href="javascript:;" onclick="openItem(&#39;{$v.link}&#39;);"><span>{$v.name}</span></a>
+									</li>
+								</foreach>
+								<!-- <li><a class="link actived" id="nav_dashboard" href="javascript:;" onclick="openItem(&#39;dashboard&#39;);"><span>控制台</span></a></li> -->
+							</ul>
+						</nav>
+						<div class="loca">
+							<strong>您的位置:</strong>
+							<div id="crumbs" class="crumbs">
+								<span>控制台</span><span class="arrow">&nbsp;</span><span>欢迎页面</span>
+							</div>
+						</div>
+						<div class="toolbar">
+							<ul id="skin" class="skin">
+								<span>换肤</span>
+								<li id="skin_0" class="" title="默认风格"></li>
+								<li id="skin_1" class="" title="Mac风格"></li>
+							</ul>
+							<div class="sitemap">
+								<a id="siteMapBtn" href="http://mingshop.yn.com:8088/admin/index.php#rhis" onclick="showBg(&#39;dialog&#39;,&#39;dialog_content&#39;);"><span>管理地图</span></a>
+							</div>
+							<div class="toolmenu">
+								<span class="bar-btn"></span>
+								<ul class="bar-list">
+									<li>
+										<a onclick="openItem(&#39;clear,cache,setting&#39;);" href="javascript:void(0)">更新站点缓存</a>
+									</li>
+									<li>
+										<a href="http://mingshop.yn.com/admin" id="iframe_refresh">刷新管理中心</a>
+									</li>
+									<li>
+										<a href="http://mingshop.yn.com/admin" title="管理中心-农资商城" rel="sidebar" onclick="addFavorite(&#39;http://mingshop.yn.com/admin&#39;, &#39;管理中心-农资商城&#39;);return false;">收藏管理中心</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div><div></div></td>
+				</tr>
+				<tr>
+					<td class="menutd" valign="top" width="161">
+					<div id="mainMenu" class="main-menu">
+						<foreach name='top_menus_list' item='v' key='k'>
+							<ul id="sort_{$v.link}" style="display: block;">
+								<li>
+									<dl>
+										<dd>
+											<ol>
+												<foreach name="v['child']" item="child">
+												<li nc_type="">
+													<a href="JavaScript:void(0);" name="item_{$v.link}{$child.link}" id="item_{$v.link}{$child.link}" onclick="openItem(&#39;index,{$child.link},{$v.link}&#39;);" class="selected">{$child.name}</a>
+												</li>
+												</foreach>
+											</ol>
+										</dd>
+									</dl>
+								</li>
+							</ul>
+						</foreach>
+						<!-- <ul id="sort_setting" style="display: none;">
+						<li>
+						<dl>
+						<dd>
+						<ol>
+						<li nc_type=""><a href="JavaScript:void(0);" name="item_basesetting" id="item_basesetting" onclick="openItem(&#39;base,setting,setting&#39;);" class="">站点设置</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_paramupload" id="item_paramupload" onclick="openItem(&#39;param,upload,setting&#39;);">上传设置</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_seosetting" id="item_seosetting" onclick="openItem(&#39;seo,setting,setting&#39;);">SEO设置</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_emailmessage" id="item_emailmessage" onclick="openItem(&#39;email,message,setting&#39;);">消息通知</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_systempayment" id="item_systempayment" onclick="openItem(&#39;system,payment,setting&#39;);">支付方式</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_adminadmin" id="item_adminadmin" onclick="openItem(&#39;admin,admin,setting&#39;);">权限设置</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_clearcache" id="item_clearcache" onclick="openItem(&#39;clear,cache,setting&#39;);">清理缓存</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_performperform" id="item_performperform" onclick="openItem(&#39;perform,perform,setting&#39;);">性能优化</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_searchsearch" id="item_searchsearch" onclick="openItem(&#39;search,search,setting&#39;);">搜索设置</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_listadmin_log" id="item_listadmin_log" onclick="openItem(&#39;list,admin_log,setting&#39;);">操作日志</a></li><li nc_type=""><a href="JavaScript:void(0);" name="item_indexapp" id="item_indexapp" onclick="openItem(&#39;index,app,setting&#39;);">app版本</a></li>
+						</ol>
+						</dd>
+						</dl>
+						</li>
+						</ul> -->
+
+					</div></td>
+					<td valign="top" width="100%"><iframe src="admin?132" id="workspace" name="workspace" style="overflow: visible; height: 837px; width: 1742px;" frameborder="0" width="100%" height="100%" scrolling="yes" onload="window.parent"></iframe></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</body>
 </html>

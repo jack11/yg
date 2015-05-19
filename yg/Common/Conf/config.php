@@ -17,5 +17,10 @@ return array(
 	'URL_CASE_INSENSITIVE' => true,
 	'VAR_CONTROLLER' =>'controller', 
 
-	'URL_HTML_SUFFIX'=>''
+	'URL_HTML_SUFFIX'=>'',
+	
+	//日志
+	'LOG_RECORD' => true,
+	'LOG_LEVEL'	=> 'SQL',
+	'SHOW_ERROR_MSG'        =>  true,
 );

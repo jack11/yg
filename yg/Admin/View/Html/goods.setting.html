@@ -1,0 +1,49 @@
+<include file="Common/header"/>
+
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<h3>商品设置</h3>
+			<ul class="tab-base">
+		        <li><a href="_ADMIN_URL_/goods/index" ><span>所有商品</span></a></li>
+		        <li><a href="_ADMIN_URL_/goods/add" ><span>增加</span></a></li>
+		        <li><a href="JavaScript:void(0);" class="current"><span>商品设置</span></a></li>
+		    </ul>
+		</div>
+	</div>
+	<div class="fixed-empty"></div>
+	<form method="post" enctype="multipart/form-data" name="form1">
+		<input type="hidden" name="form_submit" value="ok">
+		<table class="table tb-type2">
+			<tbody>
+
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required">是否可以自定义价格:</td>
+				</tr>
+				<tr class="noborder">
+					<td class="vatop rowform onoff"><label for="site_status1" class="cb-enable <if condition="$setting.can_edit_per_goods_price == 1">selected</if>" ><span>可以</span></label><label for="site_status0" class="cb-disable <if condition="$setting.can_edit_per_goods_price == 0">selected</if>" ><span>不可以</span></label>
+					<input id="site_status1" name="can_edit_per_goods_price" <if condition="$setting.can_edit_per_goods_price == 1">checked="checked"</if>  value="1" type="radio">
+					<input id="site_status0" name="can_edit_per_goods_price" <if condition="$setting.can_edit_per_goods_price == 0">checked="checked"</if> value="0" type="radio">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">允许发布商品时自定义每份价格？</span></td>
+				</tr>
+				
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="goods_per_price">固定每份价格:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="goods_per_price" name="goods_per_price" value="{$setting.goods_per_price}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">每份价格</span></td>
+				</tr>
+			</tbody>
+			<tfoot id="submit-holder">
+				<tr class="tfoot">
+					<td colspan="2"><a href="JavaScript:void(0);" class="btn" onclick="document.form1.submit()"><span>提交</span></a></td>
+				</tr>
+			</tfoot>
+		</table>
+	</form>
+</div>
+</body></html>

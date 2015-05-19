@@ -2,7 +2,7 @@
 namespace Home\Controller;
 class CartController extends BaseController {
 	
-	protected $allow_category_id = array(0);
+	
 	
 	
     public function index(){

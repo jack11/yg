@@ -1,0 +1,168 @@
+<include file="Common/header"/>
+
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<h3>站点设置</h3>
+			<ul class="tab-base">
+				<li>
+					<a class="current"><span>站点设置</span></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="fixed-empty"></div>
+	<form method="post" enctype="multipart/form-data" name="form1">
+		<input type="hidden" name="form_submit" value="ok">
+		<table class="table tb-type2">
+			<tbody>
+				<!--网站名称-->
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="site_name">网站名称:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="site_name" name="site_name" value="{$setting.site_name}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">网站名称，将显示在前台顶部欢迎信息等位置</span></td>
+				</tr>
+
+				<!--网站logo-->
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="site_logo">网站Logo:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform"><span class="type-file-show"><img class="show_image" src="_IMG_/preview.png">
+						<div class="type-file-preview"><img src="_IMG_/4-875-1567-d2b7a4906a253914477452018bf54d9d.png">
+						</div> </span><span class="type-file-box">
+						<input type="text" name="textfield" id="textfield1" class="type-file-text">
+						<input type="button" name="button" id="button1" value="" class="type-file-button">
+						<input name="site_logo" type="file" class="type-file-file" id="site_logo" size="30" hidefocus="true" nc_type="change_site_logo">
+					</span></td>
+					<td class="vatop tips"><span class="vatop rowform">180px * 50px</span></td>
+				</tr>
+
+				<!--会员头像-->
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="member_face">会员默认头像:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform"><span class="type-file-show"><img class="show_image" src="_IMG_/preview.png">
+						<div class="type-file-preview"><img src="_IMG_/user_center.png">
+						</div> </span><span class="type-file-box">
+						<input type="text" name="textfield2" id="textfield2" class="type-file-text">
+						<input type="button" name="button2" id="button2" value="" class="type-file-button">
+						<input name="member_face" type="file" class="type-file-file" id="member_face" size="30" hidefocus="true" nc_type="change_member_logo">
+					</span></td>
+					<td class="vatop tips"><span class="vatop rowform">会员默认头像，建议使用180px * 50px</span></td>
+				</tr>
+
+				<!-- 网站seo -->
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="site_seo">网站seo:</label></td>
+				</tr>
+				<tr class="noborder">
+					<td class="vatop rowform">					<textarea name="site_seo" rows="6" class="tarea" id="site_seo">{$setting.site_seo}</textarea></td>
+					<td class="vatop tips"><span class="vatop rowform">网站seo</span></td>
+				</tr>
+
+				<!--管理员emial-->
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="site_email">平台email:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="site_email" name="site_email" value="{$setting.site_email}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">平台email</span></td>
+				</tr>
+
+				<!-- 上传设置-->
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="upload_size_limit">上传文件最大值:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="upload_size_limit" name="upload_size_limit" value="{$setting.upload_size_limit}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">单位KB,1M等于1024KB</span></td>
+				</tr>
+
+				<!-- 站点客服电话 -->
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="site_phone">平台客服联系电话:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="site_phone" name="site_phone" value="{$setting.site_phone}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">前台卖家中心页面右下侧可以显示，方便卖家遇到问题时咨询，多个请用半角逗号 "," 隔开</span></td>
+				</tr>
+
+				<!-- 站点关闭 -->
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required">站点状态:</td>
+				</tr>
+				<tr class="noborder">
+					<td class="vatop rowform onoff"><label for="site_status1" class="cb-enable <if condition="$setting.site_status == 1">selected</if>" ><span>开启</span></label><label for="site_status0" class="cb-disable <if condition="$setting.site_status == 0">selected</if>" ><span>关闭</span></label>
+					<input id="site_status1" name="site_status" <if condition="$setting.site_status == 1">checked="checked"</if>  value="1" type="radio">
+					<input id="site_status0" name="site_status" <if condition="$setting.site_status == 0">checked="checked"</if> value="0" type="radio">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">可暂时将站点关闭，其他人无法访问，但不影响管理员访问后台</span></td>
+				</tr>
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="closed_reason">关闭原因:</label></td>
+				</tr>
+				<tr class="noborder">
+					<td class="vatop rowform">					<textarea name="closed_reason" rows="6" class="tarea" id="closed_reason">测试功能屏蔽</textarea></td>
+					<td class="vatop tips"><span class="vatop rowform">当网站处于关闭状态时，关闭原因将显示在前台</span></td>
+				</tr>
+			</tbody>
+			<tfoot id="submit-holder">
+				<tr class="tfoot">
+					<td colspan="2"><a href="JavaScript:void(0);" class="btn" onclick="document.form1.submit()"><span>提交</span></a></td>
+				</tr>
+			</tfoot>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">
+	// 模拟网站LOGO上传input type='file'样式
+	$(function() {
+		$("#site_logo").change(function() {
+			$("#textfield1").val($(this).val());
+		});
+		$("#member_logo").change(function() {
+			$("#textfield2").val($(this).val());
+		});
+		$("#seller_center_logo").change(function() {
+			$("#textfield3").val($(this).val());
+		});
+		// 上传图片类型
+		$('input[class="type-file-file"]').change(function() {
+			var filepatd = $(this).val();
+			var extStart = filepatd.lastIndexOf(".");
+			var ext = filepatd.substring(extStart, filepatd.lengtd).toUpperCase();
+			if (ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+				alert("图片限于png,gif,jpeg,jpg格式");
+				$(this).attr('value', '');
+				return false;
+			}
+		});
+		$('#time_zone').attr('value', '8');
+	}); 
+</script>
+<!-- zhxc 屏蔽 debug 信息的页面输出
+<div id="think_page_trace" class="trace">
+<fieldset id="querybox">
+<legend>页面Trace信息</legend>
+<div>
+Array
+(
+)
+</div>
+</fieldset>
+</div>
+-->
+
+</body></html>

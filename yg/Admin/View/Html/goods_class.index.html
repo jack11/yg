@@ -1,0 +1,106 @@
+
+<include file="Common/header"/>
+<div class="page">
+  <div class="fixed-bar">
+		<div class="item-title">
+			<h3>分类</h3>
+			<ul class="tab-base">
+		        <li><a href="_ADMIN_URL_/goods_class/index" class="current"><span>管理</span></a></li>
+		        <li><a href="_ADMIN_URL_/goods_class/add" ><span>新增</span></a></li>
+		        <li><a href="_ADMIN_URL_/goods/setting"><span>分类设置</span></a></li>
+		    </ul>
+		</div>
+	</div>
+  <div class="fixed-empty"></div>
+   <table class="table tb-type2" id="prompt">
+    <tbody>
+      <tr class="space odd">
+        <th class="nobg" colspan="12"><div class="title"><h5><?php echo $lang['nc_prompts'];?></h5><span class="arrow"></span></div></th>
+      </tr>
+      <tr>
+        <td>
+        <ul>
+            <li>分类管理</li>
+          </ul></td>
+      </tr>
+    </tbody>
+  </table>
+  <form method='post'>
+    <input type="hidden" name="form_submit" value="ok" />
+    <input type="hidden" name="submit_type" id="submit_type" value="" />
+    <table class="table tb-type2">
+      <thead>
+        <tr class="thead">
+          <th></th>
+          <th>排序</th>
+          <th>分类名称</th>
+          <th>增加时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="class_list" item='class'>
+        <tr class="hover edit">
+          <td class="w48"><input type="checkbox" name="check_gc_id[]" value="{$class.class_id}" class="checkitem">
+            <if condition="$class['child']==1">
+            <img fieldid="{$class.class_id}" status="open" nc_type="flex" src="_IMG_/tv-expandable.gif">
+            <else />
+            <img fieldid="{$class.class_id}" status="close" nc_type="flex" src="_IMG_/tv-item.gif">
+            </if></td>
+          <td class="w48 sort"><span title="可编辑" ajax_branch="goods_class_sort" datatype="number" fieldid="{$class.class_id}" fieldname="gc_sort" nc_type="inline_edit" class="editable ">{$class.sort}</span></td>
+          <td class="w50pre name">
+          <span title="可编辑" required="1" fieldid="{$class.class_id}" ajax_branch="goods_class_name" fieldname="gc_name" nc_type="inline_edit" class="editable ">{$class.class_name}</span>
+          <a class="btn-add-nofloat marginleft" href="_ADMIN_URL_/goods_class/add/gc_parent_id/{$class.class_id}"><span>新增下级分类</span></a>
+          </td>
+          <td>{$class.create_time|date="Y-m-d",###}</td>
+          <td class="w84"><a href="_ADMIN_URL_/goods_class/edit/class_id/{$class.class_id}">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = '_ADMIN_URL_/goods_class/delete/class_id/{$class.class_id}';">删除</a></td>
+        </tr>
+        </foreach>
+        <tr class="no_data">
+          <td colspan="10"><?php echo $lang['nc_no_record'];?></td>
+        </tr>
+        </foreach>
+      </tbody>
+      <?php if(!empty($output['class_list']) && is_array($output['class_list'])){ ?>
+      <tfoot>
+        <tr class="tfoot">
+          <td><input type="checkbox" class="checkall" id="checkall_2"></td>
+          <td id="batchAction" colspan="15"><span class="all_checkbox">
+            <label for="checkall_2"><?php echo $lang['nc_select_all'];?></label>
+            </span>&nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" ><span><?php echo $lang['nc_del'];?></span></a>
+            </td>
+        </tr>
+      </tfoot>
+      <?php } ?>
+    </table>
+  </form>
+</div>
+<script type="text/javascript" src="_JS_/jquery.edit.js" charset="utf-8"></script> 
+<script type="text/javascript" src="_JS_/jquery.goods_class.js" charset="utf-8"></script> 
+<script type="text/javascript" src="_JS_/dialog/dialog.js" id="dialog_js" charset="utf-8"></script> 
+<script>
+	$(function(){
+		$('a[class="btn"]').click(function(){
+			if(!classIsChecked()){
+				showDialog("请先选择分类");
+				return ;
+			}
+			if(confirm('<?php echo $lang['goods_class_index_ensure_del'];?>')){
+				$('#submit_type').val('del');
+				$('form:first').submit();
+			}
+		});
+	})
+	
+	var ADMIN_TEMPLATES_URL = '_IMG_';
+	var RESOURCE_SITE_URL = '_JS_';
+	
+	function classIsChecked(){
+		var flag=false;
+		$('input[name="check_gc_id[]"]:checked').each(function(){
+			return flag=true;
+		});
+		return flag;
+	}
+	
+</script>

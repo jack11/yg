@@ -3,7 +3,8 @@ namespace Admin\Controller;
 
 class IndexController extends BaseController {
 	
-	protected function _initialize(){
+	public  function __construct(){
+		parent::__construct();
 	}
 	
     public function index(){

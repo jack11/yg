@@ -19,3 +19,11 @@ function empty_array($array){
 	}
 	return FALSE;
 }
+
+
+function chkSubmit(){
+	if(isset($_POST['form_submit']) && $_POST['form_submit']=='ok'){
+		return TRUE;
+	}
+	return FALSE;
+}

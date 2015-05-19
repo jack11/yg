@@ -6,13 +6,16 @@ class BaseController extends Controller {
 	public function __construct(){
 		
 		parent::__construct();
+		$this->defineVar();
 		$this->setHeader();
 		
-		$m_goods_class = M('goods_class');
+		$m_goods_class = D('goods_class');
 		
 		//分类
 		$class_list = $m_goods_class->getClassList(array());
-		$class_list = $this->getClassTree($class_list);
+		$this->assign('class_list',$class_list);
+		//$class_list = $this->getClassTree($class_list);
+		
 	}
 	
 	protected function _initialize(){
@@ -54,20 +57,33 @@ class BaseController extends Controller {
 	}
 	
 	/**
-	 * 得到树形class
+	 * 得到树形class 2级
 	 */
-	 protected function getClassTree($class,$deep='2'){
+	 protected function getClassTree($class,$parent_id = 0,$deep=1){
 	 	if(!empty_array($class)){
 	 		return array();
 	 	}
 		
 	 	$tree = array();	//返回数组
-	 	for ($i=0; $i < $deep; $i++) { 
-			 
+	 	foreach ($class as $key => $value) {
+			 if($value['parent_id'] == $parent_id);
 		 }
 	 }
 	
+	/**
+	 * 定义常量
+	 */
+	private final function defineVar(){
+		//运行时间
+		define('TIMESTAMP', time());
 	
+		//订单状态 0取消 10新增 20已支付 30完成
+		define('ORDER_CANCLE', 0);
+		define('ORDER_NEW',10);
+		define('ORDER_PAY', 20);
+		define('ORDER_FINISH', 30);
+		
+	}
 	
 	
 }

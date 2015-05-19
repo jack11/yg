@@ -9,6 +9,7 @@ return array(
 		'_UPIMG_' => __ROOT__.'/Public/Upload/Images',
 		'_UPFILE_' => __ROOT__.'/Public/Upload/File',
 		'_TEST_' => realpath(APP_PATH),
+		'_ADMIN_URL_'=>'/admin.php'
 	),
 	
 	'TMPL_ACTION_ERROR' => 'Common:404',

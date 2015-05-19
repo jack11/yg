@@ -1,0 +1,109 @@
+
+<include file="Common/header"/>
+
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <h3><?php echo $lang['brand_index_brand'];?></h3>
+      <ul class="tab-base">
+        <li><a href="JavaScript:void(0);" class="current"><span>管理</span></a></li>
+        <li><a href="index.php?act=brand&op=brand_add"><span>新增</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fixed-empty"></div>
+  <form method="get" name="formSearch" id="formSearch">
+    <table class="tb-type1 noborder search">
+      <tbody>
+        <tr>
+          <th><label for="search_brand_name">品牌名称</label></th>
+          <td><input class="txt" name="search_brand_name" id="search_brand_name" value="{$search.search_brand_name}" type="text"></td>
+          <th><label for="search_brand_class">分类名称</label></th>
+          <td><input class="txt" name="search_brand_class" id="search_brand_class" value="{$search.search_brand_class}" type="text"></td>
+          <td><a href="javascript:void(0);" id="ncsubmit" class="btn-search " title="查询">&nbsp;</a>
+            <if condition="($search['search_brand_name']) or ($search['search_brand_class'])" >
+            <a class="btns " href="_ADMIN_URL_/__ACTION__" title="撤销查询"><span>撤销查询</span></a>
+            </if>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <table class="table tb-type2" id="prompt">
+    <tbody>
+      <tr class="space odd">
+        <th colspan="12"><div class="title"><h5>操作提醒</h5><span class="arrow"></span></div></th>
+      </tr>
+      <tr>
+        <td>
+        <ul>
+            <li>操作提醒</li>
+          </ul></td>
+      </tr>
+    </tbody>
+  </table>
+  <form method='post' onsubmit="if(confirm('确定删除?')){return true;}else{return false;}" name="brandForm">
+    <input type="hidden" name="form_submit" value="ok" />
+    <!--<div style="text-align:right;"><a class="btns" href="javascript:void(0);" id="ncexport"><span><?php echo $lang['nc_export'];?>Excel</span></a></div>-->
+    <table class="table tb-type2">
+      <thead>
+        <tr class="thead">
+          <th class="w24"></th>
+          <th class="w48">排序</th>
+          <th class="w270">品牌名称</th>
+          <th class="w150">所属分类</th>
+          <th>品牌图片标识</th>
+          <th class="align-center">推荐</th>
+          <th class="w72 align-center">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<if condition="$brand_list">
+        <foreach name="brand_list" item="brand" key='key'>
+        <tr class="hover edit">
+          <td><input value="{$brand.brand_id}" class="checkitem" type="checkbox" name="del_brand_id[]"></td>
+          <td class="sort"><span class=" editable"  nc_type="inline_edit" fieldname="brand_sort" ajax_branch='brand_sort' fieldid="<?php echo $v['brand_id']?>" datatype="pint" maxvalue="255" title="可编辑">{$brand.sort}</span></td>
+          <td class="name"><span class=" editable" nc_type="inline_edit" fieldname="brand_name" ajax_branch='brand_name' fieldid="{$brand.brand_id}" required="1"  title="可编辑">{$brand.brand_name}</span></td>
+          <td class="class">{$brand.class_name}</td>
+          <td class="picture"><div class="brand-picture"><img src="{$brand.brand_pic}"/></div></td>
+          <td class="align-center yes-onoff"><if condition="$brand['is_recommend'] == 0">
+            <a href="JavaScript:void(0);" class=" disabled" ajax_branch='brand_recommend' nc_type="inline_edit" fieldname="brand_recommend" fieldid="{$brand.brand_id}" fieldvalue="0" title="可编辑"><img src="_IMG_/transparent.gif"></a>
+            <else />
+            <a href="JavaScript:void(0);" class=" enabled" ajax_branch='brand_recommend' nc_type="inline_edit" fieldname="brand_recommend" fieldid="{$brand.brand_id}" fieldvalue="1"  title="可编辑"><img src="_IMG_/transparent.gif"></a>
+           </if></td>
+          <td class="align-center"><a href="_ADMIN_URL_/brand/edit/brand_id/{$brand.brand_id}">编辑</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="if(confirm('确定删除?')){location.href='_ADMIN_URL_/brand/delete/brand_id/{$brand.brand_id}';}else{return false;}">删除</a></td>
+        </tr>
+        </foreach>
+        <else />
+        <tr class="no_data">
+          <td colspan="10">没有记录</td>
+        </tr>
+        </if>
+      </tbody>
+      <tfoot>
+        <if condition="$brand_list">
+        <tr colspan="15" class="tfoot">
+          <td><input type="checkbox" class="checkall" id="checkallBottom"></td>
+          <td colspan="16"><label for="checkallBottom">全选</label>
+            &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" onclick="document.brandForm.submit()"><span>删除</span></a>
+            <div class="pagination"> {$show_page} </div></td>
+        </tr>
+        </if>
+      </tfoot>
+    </table>
+  </form>
+  <div class="clear"></div>
+</div>
+</div>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.edit.js" charset="utf-8"></script>
+<script>
+$(function(){
+    $('#ncexport').click(function(){
+    	$('input[name="op"]').val('export_step1');
+    	$('#formSearch').submit();
+    });
+    $('#ncsubmit').click(function(){
+    	$('input[name="op"]').val('brand');$('#formSearch').submit();
+    });	
+});
+</script>

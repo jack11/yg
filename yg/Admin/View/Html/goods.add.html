@@ -1,0 +1,199 @@
+<include file="Common/header"/>
+
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<h3>商品发布</h3>
+			<ul class="tab-base">
+		        <li><a href="_ADMIN_URL_/goods/index" ><span>所有商品</span></a></li>
+		        <li><a href="JavaScript:void(0);" class="current"><span>增加</span></a></li>
+		        <li><a href="_ADMIN_URL_/goods/setting"><span>商品设置</span></a></li>
+		    </ul>
+		</div>
+	</div>
+	<div class="fixed-empty"></div>
+	<form method="post" enctype="multipart/form-data" name="form1">
+		<input type="hidden" name="form_submit" value="ok">
+		<table class="table tb-type2">
+			<tbody>
+				
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="goods_name">商品名称:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="goods_name" name="goods_name" value="{$tmp.goods_name}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">商品名称</span></td>
+				</tr>
+				
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="goods_jingle">广告词:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="goods_jingle" name="goods_jingle" value="{$tmp.goods_jingle}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">商品广告词</span></td>
+				</tr>
+
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="shop_price">商品价格:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="shop_price" name="shop_price" value="{$tmp.shop_price}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">商品价格</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="">共有多少份:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="" name="" value="" readonly="readonly" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">总价格除以每份多少钱得出的结果</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="is_new">是否是新品:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="is_new" name="is_new" value="1" class="" type="radio">是
+					<input id="is_new" name="is_new" value="0" class="" type="radio">否
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">是否是新品</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="is_commend">是否推荐:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="is_commend" name="is_commend" value="1" class="" type="radio">是
+					<input id="is_commend" name="is_commend" value="0" class="" type="radio">否
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">是否推荐</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="state_time">商品开始销售时间:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="state_time" name="state_time" value=""  class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">商品开始销售时间</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="end_time">商品结束时间:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="end_time" name="end_time" value=""  class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">商品结束的时候，如果买够了就会自动选出幸运者</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="goods_images">商品主图:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform"><span class="type-file-show"><img class="show_image" src="_IMG_/preview.png">
+						<div class="type-file-preview"><img src="_IMG_/user_center.png">
+						</div> </span><span class="type-file-box">
+						<!--<input type="text" name="textfield2" id="textfield2" class="type-file-text">
+						<input type="button" name="button2" id="button2" value="" class="type-file-button">-->
+						<input name="goods_images" type="file" class="type-file-file" id="goods_images" size="30" hidefocus="true" nc_type="change_member_logo">
+					</span></td>
+					<td class="vatop tips"><span class="vatop rowform">商品主图，建议使用180px * 50px</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="">商品属性:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="attribute_name" name="attr[0][name]" value="" class="" type="text">：
+					<input id="attribute_value" name="attr[0][value]" value="" class="" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">商品的属性</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="view_count">商品浏览次数:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform">
+					<input id="view_count" name="view_count" value="{$tmp.view_count}" class="txt" type="text">
+					</td>
+					<td class="vatop tips"><span class="vatop rowform">可以设定商品被浏览过多少次</span></td>
+				</tr>
+				
+				<tr style="background: rgb(255, 255, 255);">
+					<td colspan="2" class="required"><label for="content">商品详情:</label></td>
+				</tr>
+				<tr class="noborder" style="background: rgb(255, 255, 255);">
+					<td class="vatop rowform" colspan="2">
+					<textarea name="content">
+						{$tmp.content}
+					</textarea>
+					</td>
+					
+				</tr>
+				
+				
+			</tbody>
+			<tfoot id="submit-holder">
+				<tr class="tfoot">
+					<td colspan="2"><a href="JavaScript:void(0);" class="btn" onclick="document.form1.submit()"><span>提交</span></a></td>
+				</tr>
+			</tfoot>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">
+	// 模拟网站LOGO上传input type='file'样式
+	$(function() {
+		$("#site_logo").change(function() {
+			$("#textfield1").val($(this).val());
+		});
+		$("#member_logo").change(function() {
+			$("#textfield2").val($(this).val());
+		});
+		$("#seller_center_logo").change(function() {
+			$("#textfield3").val($(this).val());
+		});
+		// 上传图片类型
+		$('input[class="type-file-file"]').change(function() {
+			var filepatd = $(this).val();
+			var extStart = filepatd.lastIndexOf(".");
+			var ext = filepatd.substring(extStart, filepatd.lengtd).toUpperCase();
+			if (ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+				alert("图片限于png,gif,jpeg,jpg格式");
+				$(this).attr('value', '');
+				return false;
+			}
+		});
+		$('#time_zone').attr('value', '8');
+	}); 
+</script>
+<!-- zhxc 屏蔽 debug 信息的页面输出
+<div id="think_page_trace" class="trace">
+<fieldset id="querybox">
+<legend>页面Trace信息</legend>
+<div>
+Array
+(
+)
+</div>
+</fieldset>
+</div>
+-->
+
+</body></html>

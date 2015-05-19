@@ -100,14 +100,16 @@ class Page {
 	 * return string url 处理后的url
 	 * */
 	protected function builtURL() {
-		$base = __ACTION__;
+		$base = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].__ACTION__;
 
 		if (array_key_exists($this -> sign,$_GET)) {
-			unset($_GET[$this -> sign]);
+			//unset($_GET[$this -> sign]);
 		}
 		$paramString = '';
 		foreach ($_GET as $k => $v) {
-			$paramString .= $k . '/' . $v . '/';
+			if($k != $this->sign){
+				$paramString .= $k . '/' . $v . '/';
+			}
 		}
 		$url = $base . '/' . $paramString;
 		if (stripos($url, 'Home/')) {
