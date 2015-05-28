@@ -108,4 +108,19 @@ function getPercent($child,$parent){
 }
 
 
+/**
+ * 发送邮件
+ */
+function sendMail($subject,$body,$to,$from='',$fromname=''){
+	if(!$subject || !$body || !$to){
+		return FALSE;
+	}
+	
+	$from = $from ? $from : C('setting.admin_email');
+	$fromname = $fromname ? $fromname : C('setting.admin_name');
+	
+	$mail =  \Tools\mail\Mail::getInstance();
+	return $mail->send($subject,$body,$from,$fromname,$to);
+}
+
  
