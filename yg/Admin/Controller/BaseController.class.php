@@ -1,17 +1,15 @@
 <?php
 namespace Admin\Controller;
-use Think\Controller;
-class BaseController extends Controller {
+use Common\Controller\InitController;
+
+class BaseController extends InitController {
 	
 	public function __construct(){
 		parent::__construct();
 		$this->checkLogin();
-		
+
 		$this->_showMenu();
 		
-	}
-	
-	protected function _initialize(){
 	}
 
 	protected function checkLogin(){
@@ -24,7 +22,7 @@ class BaseController extends Controller {
 	 * 成功
 	 */
 	 protected function success($message = '', $jumpUrl = '', $ajax = false){
-	 	parent::success($message);
+	 	parent::success($message,$jumpUrl,$ajax);
 		exit;
 	 }
 	
@@ -61,9 +59,13 @@ class BaseController extends Controller {
 	protected function _showMenu(){
 		$menus_list = array(
 			'0'	=> array(
-				'name'	=> '设置',
+				'name'	=> '网站管理',
 				'link'	=> 'setting',
 				'child'	=> array(
+					array(
+						'name' => '欢迎',
+						'link' => 'welcome',
+					),
 					array(
 						'name'	=> '站点设置',
 						'link'	=> 'setting',
@@ -86,26 +88,34 @@ class BaseController extends Controller {
 						'name'	=> '品牌管理',
 						'link'	=> 'brand',
 					),
+					array(
+						'name' => '建议管理',
+						'link' => 'suggest',
+					),
 				),
 			),
 			'2'	=> array(
 				'name'	=> '订单',
 				'link'	=> 'order',
-				'child'	=> array(),
+				'child'	=> array(
+					array(
+						'name' => '订单管理',
+						'link' => 'order',
+					),
+				),
 			),
 			'3'	=> array(
 				'name'	=> '会员',
 				'link'	=> 'member',
-				'child'	=> array(),
-			),
-			'4'	=> array(
-				'name'	=> '网站',
-				'link'	=> 'article',
-				'child'	=> array(),
+				'child'	=> array(
+					array(
+						'name' => '会员管理',
+						'link' => 'member',
+					),
+				),
 			),
 		);
 		$this->assign('top_menus_list',$menus_list) ;
-		
 	}
 }
 	

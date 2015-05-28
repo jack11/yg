@@ -77,7 +77,7 @@
     <table class="table tb-type2">
       <thead>
         <tr class="thead">
-          <th class="w24"></th>
+          <th class="w12"></th>
          
           <th class="align-center">商品id</th>
           <th class="align-center">商品名称</th>
@@ -85,7 +85,7 @@
           <th class="align-center">分类</th>
           <th class="align-center">总价格</th>
           <th class="align-center">每份价格</th>
-          <th class="w48 align-center">操作 </th>
+          <th class="align-center">操作 </th>
         </tr>
       </thead>
       <tbody>
@@ -93,23 +93,30 @@
         <tr class="hover edit">
           <td><input type="checkbox" name="id[]" value="{$goods.goods_id}" class="checkitem"></td>
           
-          <td class="w60 align-center">{$goods.goods_id}</td>
-          <td class="w60 align-center">{$goods.goods_name}</td>
-          <td class="w60 align-center">{$goods.brand_name}飞利浦</td>
-          <td class="w60 align-center">{$goods.class_name}电脑</td>
-          <td class="w60 align-center">{$goods.shop_price}</td>
-          <td class="w60 align-center">{$goods.per_price}</td>
-          <td class="w60 align-center"><a href="#">删除</a></td>
+          <td class="w12 align-center">{$goods.goods_id}</td>
+          <td class=" align-center">{$goods.goods_name}</td>
+          <td class=" align-center">{$goods.brand_name}</td>
+          <td class=" align-center">{$goods.class_name}</td>
+          <td class=" align-center">{$goods.shop_price}</td>
+          <td class=" align-center">{$goods.per_price}</td>
+          <td class=" align-center"><a href="{$goods.goods_id|getGoodsUrl}" target="__blank">查看</a> | <a href="#">删除</a></td>
         </tr>
         </foreach>
       </tbody>
       <tfoot>
-        <tr class="tfoot">
-          <td><input type="checkbox" class="checkall" id="checkallBottom"><label for="checkallBottom">全选</label></td>
-          <td colspan="">
-            &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" nctype="lockup_batch"><span>违规下架</span></a> <a href="JavaScript:void(0);" class="btn" nctype="del_batch"><span>删除</span></a>
+        <tr colspan="15" class="tfoot">
+          <td><input type="checkbox" class="checkall" id="checkallBottom"></td>
+          <td colspan="16"><label for="checkallBottom">全选</label>
+            &nbsp;&nbsp; <a href="JavaScript:void(0);" class="btn" nctype="del_batch"><span>删除</span></a>
             <div class="pagination"> {$show_page} </div></td>
         </tr>
+        
+        <!--<tr colspan="15" class="tfoot">
+          <td><input type="checkbox" class="checkall" id="checkallBottom"></td>
+          <td colspan="16"><label for="checkallBottom">全选</label>
+            &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" onclick="document.brandForm.submit()"><span>删除</span></a>
+            <div class="pagination"> {$show_page} </div></td>
+        </tr>-->
       </tfoot>
     </table>
   </form>

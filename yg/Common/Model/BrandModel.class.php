@@ -11,9 +11,7 @@ class BrandModel extends BaseModel{
 		return $this->where($condition)->field($field)->limit($limit)->page($page)->select();
 	}
 	
-	public function getOne($condition){
-		return $this->where($condition)->find();
-	}
+	
 	
 	
 

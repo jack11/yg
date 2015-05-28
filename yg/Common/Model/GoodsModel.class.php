@@ -9,5 +9,9 @@ class GoodsModel extends BaseModel{
 	}
 	
 	
-
+	
+	 public function getOnlineGoodsList($condition,$limit='',$page='',$field='*',$order=''){
+	 	$condition['state'] = C('goods_state_new');
+		return $this->getList($condition,$limit,$page,$field);
+	 }
 }

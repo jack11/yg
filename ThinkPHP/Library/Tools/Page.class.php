@@ -1,6 +1,6 @@
 <?php
 
-namespace Think;
+namespace Tools;
 
 class Page {
 

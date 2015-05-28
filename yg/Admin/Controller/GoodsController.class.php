@@ -11,7 +11,7 @@ class GoodsController extends BaseController {
     	
 		//一级分类
 		$m_goods_class = D('GoodsClass');
-		$goods_class_list = $m_goods_class->getClassList(array('parent_id'=>0));
+		$goods_class_list = $m_goods_class->getList(array('parent_id'=>0));
 		$this->assign('goods_class_list',$goods_class_list);
 		
 		//品牌
@@ -56,17 +56,29 @@ class GoodsController extends BaseController {
 			$this->assign('tmp',$_POST);
 			
 			$insert = array();
-			$insert['class_id']		= $this->getInt('post.class_id')+1;
+			
+			//分类
+			$insert['goods_class']	= $this->getInt('post.goods_class');
+			$class_info = D('GoodsClass')->getOne(array('class_id'=>$insert['goods_class']));
+			$insert['class_name']	= $class_info['class_name'];
+			
+			//品牌
+			$insert['brand_id']		= $this->getInt('post.brand_id');
+			$brand_info	= D('Brand')->getOne(array('brand_id'=>$insert['brand_id']));
+			$insert['brand_name']	= $brand_info['brand_name'];
+			
 			$insert['goods_name'] 	= $this->getString('post.goods_name');
 			$insert['goods_jingle']	= $this->getString('post.goods_jingle');
 			$insert['shop_price']	= $this->getString('post.shop_price');
-			$insert['start_time']	= $this->getString('post.start_time');
-			$insert['end_time']		= $this->getString('post.end_time');
 			$insert['attribute']	= $this->getString('post.attribute');
 			$insert['view_count']	= $this->getInt('post.view_count');
-			$insert['content']		= $this->getString('post.content');
-			$insert['is_new']		= $this->getInt('post.view_count');
-			$insert['is_commend']	= $this->getInt('post.iscommend');
+			$insert['content']		= $_POST['content'];
+			$insert['is_new']		= $this->getInt('post.is_new');
+			$insert['is_commend']	= $this->getInt('post.is_commend');
+			
+			//商品图片
+			$path = $this->uploadImg('goods_images');
+			$insert['goods_image']	= $path;
 			
 			//每份价格
 			$insert['per_price']	= 1;
@@ -75,12 +87,40 @@ class GoodsController extends BaseController {
 			//状态
 			$insert['state']		= 1;
 			
+			//时间
+			$start_time = strtotime($this->getString('post.start_time'));
+			$end_time 	= strtotime($this->getString('post.end_time'));
+			$start_time	= $start_time ? $start_time : TIMESTAMP;
+			$end_time	= $end_time ? $end_time : (TIMESTAMP+7*24*3600);
+			$insert['start_time']	= $start_time;
+			$insert['end_time']		= $end_time;
+			
 			if($m_goods->add($insert)){
 				$this->success('添加商品成功','/admin.php/goods/add');
 			}else{
 				$this->error('发布失败');
 			}
 		}
+
+
+		//分类
+		$m_goods_class = D('GoodsClass');
+		$class_list = $m_goods_class->getList(array());
+		$class_list = $m_goods_class->getClassTree($class_list);
+		foreach($class_list as $key=>$class){
+			if($class['has_child']){
+				unset($class_list[$key]);
+			}
+		}
+		$this->assign('class_list',$class_list);
+		
+		//商品品牌
+		
+		
+		//每份价格
+		$this->assign('per_price',C('setting.goods_per_price'));
+		
+		
 		$this->display('html/goods.add');
 	}
 
@@ -104,5 +144,30 @@ class GoodsController extends BaseController {
 		
 		$this->display('html/goods.setting');
 	}
-
+	
+	/**
+	 * 获取品牌
+	 */
+	public function getBrandAjax(){
+		$class_id = $this->getInt('get.class_id');
+		if($class_id<=0){
+			die(json_encode(array('state'=>FALSE)));
+		}
+		$brand_list = D('Brand')->getList(array('class_id'=>$class_id));
+		$this->returnAjax(TRUE,$brand_list);
+	}
+	
+	/**
+	 * 编辑商品
+	 */
+	public function edit(){
+		$goods_id = $this->checkId('goods_id');
+		
+		$m_goods = D('Goods');
+		$goods_info = $m_goods->getOne(array('goods_id'=>$goods_id));
+		
+		$this->assign('goods_info',$goods_info);
+		$this->display('html/goods.edit');
+		
+	}
 }

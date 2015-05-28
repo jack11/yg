@@ -46,7 +46,7 @@
 					<select name="parent_id">
 						<option value="0">顶级分类</option>
 						<foreach name="class_list" item="class_info">
-						<option value="{$class_info.class_id}" <if condition="$class.class_id==$class_info.class_id">selected="selected"</if> >{$class_info.level|str_repeat="&nbsp;&nbsp;&nbsp;&nbsp;",###}{$class_info.class_name}</option>
+						<option value="{$class_info.class_id}" <if condition="$class['class_id'] == $class_info['class_id']">selected="selected"</if> >{$class_info.level|str_repeat="&nbsp;&nbsp;&nbsp;&nbsp;",###}{$class_info.class_name}</option>
 						</foreach>
 					</select>
 					</td>

@@ -18,17 +18,45 @@ class BaseModel extends Model {
 		return $show;
 	}
 	
-	public function page($page){
+	public function page($page,$listRows = NULL){
 		if(!$page){
 			return $this;
 		}
-		return parent::page($page);
+		return parent::page($page,$listRows);
 	}
 	
-	public function limit($limit){
+	public function limit($limit, $length = NULL){
 		if(!$limit){
 			return $this;
 		}
-		return parent::limit($limit);
+		return parent::limit($limit,$length);
+	}
+	
+	/**
+	 * 得到一个
+	 */
+	public function getOne($condition,$field='*'){
+		return $this->where($condition)->limit(1)->find();
+	}
+	
+	/**
+	 * 得到list
+	 */
+	public function getList($condition,$limit='',$page='',$field='*',$order=''){
+		return $this->where($condition)->field($field)->limit($limit)->page($page)->order($order)->select();
+	}
+	
+	/**
+	 * 更新
+	 */
+	public function update($condition,$update){
+		return $this->where($condition)->save($update);
+	}
+	
+	/**
+	 * 得到总数
+	 */
+	public function getCount($condition){
+		return $this->where($condition)->count();
 	}
 }

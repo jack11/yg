@@ -21,7 +21,10 @@ class CheckCode{
 
 	protected $name = 'checkCode';	//在session 的名称
 
+	protected $font_size = 20;	//字体大小
 
+	protected $space = 30;		//字体间距
+	
 	public function _construct(){
 		$this->font =  LIB_PATH . 'Tools/'.$this->font();
 	}
@@ -64,6 +67,30 @@ class CheckCode{
 	public function setName($name){
 		$this->name = $name;
 		return $this;
+	}
+
+	public function setFontSize($size){
+		$this->font_size = $size;
+		return $this;
+	}
+	
+	public function setSpace($space){
+		$this->space = $space;
+		return $this;
+	}
+	
+	public function __get($name){
+		if(isset($this->$name)){
+			return $this->$name;
+		}
+		return false;
+	}
+	
+	public function check($code){
+		if($code == $_SESSION[$this->name]){
+			return TRUE;
+		}
+		return false;
 	}
 
 	//输出验证码 sname 代表在session里的名字
@@ -167,8 +194,8 @@ class CheckCode{
 			$char = substr($string,0,1);
 			$str .= $char;
 			$color = imagecolorallocate($this->img,mt_rand(0,120),mt_rand(0,120),mt_rand(0,120));
-			imagettftext($this->img, 20, mt_rand(0, 30), 30 * $i +10, mt_rand(20, 25), $color, $this->font, $char);
-		}
+			imagettftext($this->img, $this->font_size, mt_rand(0, 30), $this->space * $i +10, mt_rand($this->font_size, ($this->font_size+$this->font_size/3)), $color, $this->font, $char);
+	}
 		return $str;
 	}
 

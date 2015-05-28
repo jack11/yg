@@ -1,7 +1,8 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class BaseController extends Controller {
+use Common\Controller\InitController;
+
+class BaseController extends InitController {
 
 	public function __construct(){
 		
@@ -9,10 +10,10 @@ class BaseController extends Controller {
 		$this->defineVar();
 		$this->setHeader();
 		
-		$m_goods_class = D('goods_class');
+		$m_goods_class = D('GoodsClass');
 		
 		//分类
-		$class_list = $m_goods_class->getClassList(array());
+		$class_list = $m_goods_class->getList(array());
 		$this->assign('class_list',$class_list);
 		//$class_list = $this->getClassTree($class_list);
 		

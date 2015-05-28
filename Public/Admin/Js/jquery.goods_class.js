@@ -46,7 +46,7 @@ $(document).ready(function(){
 						}
 						src += "</td>";
 						//类型
-						src += "<td>"+data[i].type_name+"</td>";
+						src += "<td></td>";
 						//操作
 						src += "<td class='w84'>";
 						src += "<a href='/admin.php/goods_class/edit/class_id/"+data[i].class_id+"'>编辑</a>";

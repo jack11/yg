@@ -13,14 +13,16 @@ class LoginController extends Controller {
 	}
 	
 	public function login(){
-		if(!$this->check_verify($_POST['code'])){
+		
+		$code = new \Tools\CheckCode();
+		if(!$code->check($_POST['code'])){
 			$this->error('验证码错误');
 		}
 		$username = $_POST['user_name'].'';
 		$password = md5($_POST['password']);
 		
 		$m_admin = D('Admin');
-		$admin_info = $m_admin->getOne();
+		$admin_info = $m_admin->getOne(array('username'=>$username,'password'=>$password));
 		if(!$admin_info){
 			$this->error('用户名密码错误');
 		}
@@ -52,15 +54,8 @@ class LoginController extends Controller {
 	 * 验证码
 	 */
 	public function getCode() {
-		$config = array(
-			'fontSize' => 13, // 验证码字体大小
-			'length' => 4, // 验证码位数
-			'useNoise' => false, // 关闭验证码杂点
-			'imageH'=>0,
-			'imageW'=>90,
-		);
-		$Verify = new \Think\Verify($config);
-		$Verify -> entry();
+		$code = new \Tools\CheckCode();
+		$code->setFont('ttfs/2.ttf')->setModel(4)->setWidth(94)->setHeight(25)->setPixel(1000)->setLine(2)->setSize(4)->setFontSize(17)->setSpace(20)->getImg();
 	}
 	
 	protected function check_verify($code, $id = ''){

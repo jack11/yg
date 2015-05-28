@@ -16,7 +16,7 @@ class GoodsClassController extends BaseController {
 		
 		
 		$condition = array();
-		$class_list = $m_goods_class->getClassList($condition);
+		$class_list = $m_goods_class->getList($condition);
 		
 		$new_list = array();
 		foreach ($class_list as $key => $value) {
@@ -54,7 +54,7 @@ class GoodsClassController extends BaseController {
 		}
 		
 		$m_goods_class = D('GoodsClass');
-		$class_list = $m_goods_class->getClassList(array());
+		$class_list = $m_goods_class->getList(array());
 		
 		
 		$new_list = array();
@@ -85,7 +85,7 @@ class GoodsClassController extends BaseController {
 			$this->error('非法访问');
 		}
 		$m_goods_class = D('GoodsClass');
-		$class_info = $m_goods_class->getClassInfo($condition);
+		$class_info = $m_goods_class->getClassInfo(array('class_id'=>$class_id));
 		if(!$class_info){
 			$this->error('分类不存在');
 		}
@@ -105,6 +105,12 @@ class GoodsClassController extends BaseController {
 	 * 新增
 	 */
 	public function add(){
+		$m_class = D('GoodsClass');
+		$class_list = $m_class->getList(array());
+		$class_list = $m_class->getClassTree($class_list);
+		$this->assign('class_list',$class_list);
+		//dumps($class_list);
+		$this->assign('class',array('class_id'=>$this->getInt('get.gc_parent_id')));
 		$this->display('html/goods_class.add');
 	}
 

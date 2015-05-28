@@ -1,0 +1,192 @@
+
+<include file="Common/header"/>
+
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <h3>品牌</h3>
+      <ul class="tab-base">
+        <li><a href="_ADMIN_URL_/brand" ><span>管理</span></a></li>
+        <li><a href="_ADMIN_URL_/brand/add" class="current"><span>新增</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fixed-empty"></div>
+  <form id="brand_form" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="form_submit" value="ok" />
+    <table class="table tb-type2 nobdb">
+      <tbody>
+        <tr class="noborder">
+          <td colspan="2" class="required"><label class="validation">品牌名称:</label></td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform"><input type="text" value="" name="brand_name" id="brand_name" class="txt"></td>
+          <td class="vatop tips"></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="required">所属分类: </td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform" id="gcategory"><input type="hidden" value="" name="class_id" class="mls_id">
+            <input type="hidden" value="" name="brand_class" class="mls_name">
+            <select class="class-select" name="class_id">
+              <option value="0">请选择...</option>
+              <foreach name="class_list" item="class_info">
+				<option value="{$class_info.class_id}" <if condition="$class['class_id'] == $class_info['class_id']">selected="selected"</if> >{$class_info.level|str_repeat="&nbsp;&nbsp;&nbsp;&nbsp;",###}{$class_info.class_name}</option>
+			 </foreach>
+            </select></td>
+          <td class="vatop tips">所属分类</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="required">品牌图片标识: </td>
+        </tr>
+        <tr class="noborder">
+          <!-- <td class="vatop rowform"><span class="type-file-show"> 
+          	<img class="show_image" src="_IMG_/preview.png">
+            <div class="type-file-preview" style="display: none;"><img id="view_img"></div>
+            </span> <span class="type-file-box">
+            <input type='text' name='brand_pic' id='brand_pic' class='type-file-text' />
+            <input type='button' name='button' id='button' value='' class='type-file-button' />
+            <input name="_pic" type="file" class="type-file-file" id="_pic" size="30" hidefocus="true" />
+            </span></td> -->
+            <td class="vatop rowform"><span class="type-file-show"><img class="show_image" src="_IMG_/preview.png">
+				<div class="type-file-preview"><img src="_UPIMG_/{$setting.member_face}">
+				</div> </span><span class="type-file-box">
+				<input type="text" name="textfield2" id="textfield2" class="type-file-text">
+				<input type="button" name="button2" id="button2" value="" class="type-file-button">
+				<input name="brand_pic" type="file" class="type-file-file" id="brand_pic" size="30" hidefocus="true" nc_type="change_member_logo">
+			</span></td>
+          <td class="vatop tips">品牌LOGO尺寸要求宽度为150像素，高度为50像素、比例为3:1的图片；支持格式gif,jpg,pnggif,jpg,png</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="required">是否推荐: </td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform onoff"><label for="brand_recommend1" class="cb-enable"><span>是</span></label>
+            <label for="brand_recommend0" class="cb-disable selected"><span>否</span></label>
+            <input id="brand_recommend1" name="brand_recommend" <if condition="$brand.is_recommend==1">checked="checked"</if>  value="1" type="radio">
+            <input id="brand_recommend0" name="brand_recommend" <if condition="$brand.is_recommend==0">checked="checked"</if>  value="0" type="radio"></td>
+          <td class="vatop tips">选择被推荐的图片将在所有品牌列表页“推荐品牌”位置展现。</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="required">排序: </td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform"><input type="text" value="0" name="brand_sort" id="brand_sort" class="txt"></td>
+          <td class="vatop tips">数字范围为0~255，数字越小越靠前</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="tfoot">
+          <td colspan="2" ><a href="JavaScript:void(0);" class="btn" id="submitBtn"><span>提交</span></a></td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+</div>
+<script type="text/javascript" src="_JS_/dialog/dialog.js" id="dialog_js" charset="utf-8"></script> 
+<script type="text/javascript" src="_JS_/jquery-ui/jquery.ui.js"></script> 
+<script type="text/javascript" src="_JS_/ajaxfileupload/ajaxfileupload.js"></script> 
+<script type="text/javascript" src="_JS_/jquery.Jcrop/jquery.Jcrop.js"></script>
+<link href="_JS_/jquery.Jcrop/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" id="cssfile2" />
+<script type="text/javascript" src="_JS_/common_select.js" charset="utf-8"></script> 
+<script>
+$(function(){
+	$("#submitBtn").click(function(){
+	   
+	     $("#brand_form").submit();
+	});
+})
+
+//裁剪图片后返回接收函数
+/*function call_back(picname){
+	$('#brand_pic').val(picname);
+	$('#view_img').attr('src','_UPFILE_/'+picname);
+}
+$(function(){
+	$("#submitBtn").click(function(){
+	    if($("#brand_form").valid()){
+	     $("#brand_form").submit();
+		}
+	});
+	$('input[class="type-file-file"]').change(uploadChange);
+	function uploadChange(){
+		var filepatd=$(this).val();
+		var extStart=filepatd.lastIndexOf(".");
+		var ext=filepatd.substring(extStart,filepatd.lengtd).toUpperCase();		
+		if(ext!=".PNG"&&ext!=".GIF"&&ext!=".JPG"&&ext!=".JPEG"){
+			alert("file type error");
+			$(this).attr('value','');
+			return false;
+		}
+		if ($(this).val() == '') return false;
+		ajaxFileUpload();
+	}
+	function ajaxFileUpload()
+	{
+		$.ajaxFileUpload
+		(
+			{
+				url:'_ADMIN_URL_/common/pic_upload/',
+				secureuri:false,
+				fileElementId:'_pic',
+				dataType: 'json',
+				success: function (data, status)
+				{
+					if (data.status == 1){
+						ajax_form('cutpic','裁剪','_ADMIN_URL_/common/pic_cut?type=brand&x=150&y=50&resize=1&ratio=3&url=_UPIMG_/'+data.url,690);
+					}else{
+						alert(data.msg);
+					}$('input[class="type-file-file"]').bind('change',uploadChange);
+				},
+				error: function (data, status, e)
+				{
+					alert('upload failed');$('input[class="type-file-file"]').bind('change',uploadChange);
+				}
+			}
+		)
+	};
+	$("#brand_form").validate({
+		errorPlacement: function(error, element){
+			error.appendTo(element.parent().parent().prev().find('td:first'));
+        },
+        rules : {
+            brand_name : {
+                required : true,
+                remote   : {
+               	url :'_ADMIN_URL_/brand/checkBrandName',
+                type:'get',
+                data:{
+                    brand_name : function(){
+                        return $('#brand_name').val();
+                        },
+                    	id  : ''
+                    }
+                }
+            },
+            brand_sort : {
+                number   : true
+            },
+            class_id:{
+            	required : true,
+            }
+        },
+        messages : {
+            brand_name : {
+                required : '品牌名称不能为空',
+                remote   : '品牌名称已经存在',
+            },
+            brand_sort  : {
+                number   : '排序仅可以为数字',
+            },
+            class_id:{
+            	required : '请选择分类',
+            }
+        }
+	});	
+});
+*/
+gcategoryInit('gcategory');
+</script> 
+
+<include file="Common/footer"/>

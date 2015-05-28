@@ -16,6 +16,8 @@ define('APP_PATH','./yg/');
 
 define('ADMIN_URL', '/admin.php/');
 define('TIMESTAMP', time());
+define('_ROOT_',dirname(realpath(__FILE__)).'/');
+define('UP_IMAGE', _ROOT_.'Public/Upload/Images/');
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

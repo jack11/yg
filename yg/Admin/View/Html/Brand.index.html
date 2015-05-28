@@ -4,10 +4,10 @@
 <div class="page">
   <div class="fixed-bar">
     <div class="item-title">
-      <h3><?php echo $lang['brand_index_brand'];?></h3>
+      <h3>品牌</h3>
       <ul class="tab-base">
-        <li><a href="JavaScript:void(0);" class="current"><span>管理</span></a></li>
-        <li><a href="index.php?act=brand&op=brand_add"><span>新增</span></a></li>
+        <li><a href="_ADMIN_URL_/brand" class="current"><span>管理</span></a></li>
+        <li><a href="_ADMIN_URL_/brand/add"><span>新增</span></a></li>
       </ul>
     </div>
   </div>
@@ -65,7 +65,7 @@
           <td class="sort"><span class=" editable"  nc_type="inline_edit" fieldname="brand_sort" ajax_branch='brand_sort' fieldid="<?php echo $v['brand_id']?>" datatype="pint" maxvalue="255" title="可编辑">{$brand.sort}</span></td>
           <td class="name"><span class=" editable" nc_type="inline_edit" fieldname="brand_name" ajax_branch='brand_name' fieldid="{$brand.brand_id}" required="1"  title="可编辑">{$brand.brand_name}</span></td>
           <td class="class">{$brand.class_name}</td>
-          <td class="picture"><div class="brand-picture"><img src="{$brand.brand_pic}"/></div></td>
+          <td class="picture"><div class="brand-picture"><img src="_UPIMG_/{$brand.brand_pic}"/></div></td>
           <td class="align-center yes-onoff"><if condition="$brand['is_recommend'] == 0">
             <a href="JavaScript:void(0);" class=" disabled" ajax_branch='brand_recommend' nc_type="inline_edit" fieldname="brand_recommend" fieldid="{$brand.brand_id}" fieldvalue="0" title="可编辑"><img src="_IMG_/transparent.gif"></a>
             <else />

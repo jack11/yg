@@ -63,35 +63,35 @@ class Page {
 		 * */
 		//拼接完整的代码
 		$i = 1;
-		$code = "<li><a href=\"{$url}{$now}\" class=\"active\">{$now}</a></li>";
+		$code = "<li><span class=\"currentpage\">{$now}</span></li>";
 		$last = $now - 1;
 		$next = $now + 1;
 
-		while ($i < $this -> pageSize && $next <= $sum) {
+		while ($i < $this -> pageSize && $i < $sum) {
 			if ($last >= 1) {
-				$code = "<li><a href=\"{$url}{$last}\">{$last}</a></li>" . $code;
+				$code = "<li><a href=\"{$url}{$last}\"><span>{$last}</span></a></li>" . $code;
 				$last--;
 				$i++;
 			}
 			if ($next <= $sum) {
-				$code = $code . "<li><a href=\"{$url}{$next}\">{$next}</a></li>";
+				$code = $code . "<li><a href=\"{$url}{$next}\"><span>{$next}</span></a></li>";
 				$next++;
 				$i++;
 			}
 		}
-		if ($now !== 1) {
-			$code = "<li><a title=\"上一页\" href=\"{$url}".($now-1)."\">&lt;</a></li>".$code;
+		if ($now != 1) {
+			$code = "<li><a title=\"上一页\" href=\"{$url}".($now-1)."\"><span>上一页</span></a></li>".$code;
 		}
 		if ($now < $sum) {
-			$code = $code."<li><a title=\"下一页\" href=\"{$url}".($now-1)."\">&gt;</a></li>";
+			$code = $code."<li><a title=\"下一页\" href=\"{$url}".($now+1)."\"><span>下一页</span></a></li>";
 		}
 		if ($this -> error) {
 			//return FALSE;
 		}
-		$code = "<div class=\"all_page\">共 {$sum} 页</div>"
-			."<ul><li><a title=\"首页\" href=\"{$url}1\">&lt;&lt;</a></li>"
+		$code = "<ul><li class=\"all_page\"><span>共 {$sum} 页</span></li>"
+			."<li><a title=\"首页\" href=\"{$url}1\"><span>&lt;&lt;</span></a></li>"
 			.$code
-			."<li><a title=\"尾页\" href=\"{$url}{$sum}\">&gt;&gt;</a></li></ul>";
+			."<li><a title=\"尾页\" href=\"{$url}{$sum}\"><span>&gt;&gt;</span></a></li></ul>";
 		return $code;
 	}
 

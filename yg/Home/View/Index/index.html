@@ -6,48 +6,48 @@
 		<div class="home-banner fl">
 			<div id="div_slide" class="slide-scroll">
 				<!-- <div id="div_guide" class="m-guide-con" style="display: none;">
-					<div class="m-guideBg"></div>
-					<div class="m-guide">
-						<ul id="ul_guide">
-							<li class="f-step1">
-								<a href="javascript:;" title="30秒了解999999999"></a>
-								<img src="_IMG_/step_01.gif">
-							</li>
-							<li class="f-step2" style="display: none;">
-								<a href="javascript:;" title="下一步"></a>
-								<img src="_IMG_/step_02.gif">
-							</li>
-							<li class="f-step3" style="display: none;">
-								<a href="javascript:;" title="下一步"></a>
-								<img src="_IMG_/step_03.gif">
-							</li>
-							<li class="f-step4" style="display: none;">
-								<a href="javascript:;" title="下一步"></a>
-								<img src="_IMG_/step_04.gif">
-							</li>
-							<li class="f-step5" style="display: none;">
-								<a href="javascript:;" title="下一步"></a>
-								<img src="_IMG_/step_05.gif">
-							</li>
-							<li class="f-step6" style="display: none;">
-								<a href="http://help.1yyg.com/info/newbie/index.html" target="_blank" title="继续了解详情"></a>
-								<img src="_IMG_/step_06.gif">
-							</li>
-						</ul>
-						<a id="guide_close" href="javascript:;" class="m-guide-close" title="关闭"></a>
-					</div>
-					<div class="u-guide-arrow">
-						<a id="guide_pre" href="javascript:;" class="u-guide-prev"><s></s></a>
-						<a id="guide_next" href="javascript:;" class="u-guide-next"><s></s></a>
-					</div>
+				<div class="m-guideBg"></div>
+				<div class="m-guide">
+				<ul id="ul_guide">
+				<li class="f-step1">
+				<a href="javascript:;" title="30秒了解999999999"></a>
+				<img src="_IMG_/step_01.gif">
+				</li>
+				<li class="f-step2" style="display: none;">
+				<a href="javascript:;" title="下一步"></a>
+				<img src="_IMG_/step_02.gif">
+				</li>
+				<li class="f-step3" style="display: none;">
+				<a href="javascript:;" title="下一步"></a>
+				<img src="_IMG_/step_03.gif">
+				</li>
+				<li class="f-step4" style="display: none;">
+				<a href="javascript:;" title="下一步"></a>
+				<img src="_IMG_/step_04.gif">
+				</li>
+				<li class="f-step5" style="display: none;">
+				<a href="javascript:;" title="下一步"></a>
+				<img src="_IMG_/step_05.gif">
+				</li>
+				<li class="f-step6" style="display: none;">
+				<a href="http://help.1yyg.com/info/newbie/index.html" target="_blank" title="继续了解详情"></a>
+				<img src="_IMG_/step_06.gif">
+				</li>
+				</ul>
+				<a id="guide_close" href="javascript:;" class="m-guide-close" title="关闭"></a>
+				</div>
+				<div class="u-guide-arrow">
+				<a id="guide_pre" href="javascript:;" class="u-guide-prev"><s></s></a>
+				<a id="guide_next" href="javascript:;" class="u-guide-next"><s></s></a>
+				</div>
 				</div> -->
 				<div class="pic-wrapper">
 					<div class="slide-scroll-con">
 						<ul id="slideImg" style="width: 3545px; ">
 							<foreach name='t_commend_list' item='v'>
-							<li style="float: left;">
-								<a href="__ROOT__" target="_blank"><img src="_IMG_/20141126102506751.jpg" alt="{$v.goods_name}" width="709" height="300"></a>
-							</li>
+								<li style="float: left;">
+									<a href="__ROOT__" target="_blank"><img src="_UPIMG_/{$v.goods_image}" alt="{$v.goods_name}" width="709" height="300"></a>
+								</li>
 							</foreach>
 						</ul>
 					</div>
@@ -73,83 +73,60 @@
 
 			<!--广告位下方推荐-->
 			<div class="slide-comd">
-
-				<div class="commodity">
-					<ul>
-						<li class="comm-info fl">
-							<span><a href="http://www.1yyg.com/products/22194.html" target="_blank" title="小米（MIUI）小米电视 2 40英寸">小米（MIUI）小米电视 2 40英寸</a></span>
-							<p class="gray">
-								已参与<em class="orange">288</em>人次
-							</p>
-						</li>
-						<li class="comm-pic fr">
-							<a href="http://www.1yyg.com/products/22194.html" target="_blank" title="小米（MIUI）小米电视 2 40英寸" rel="nofollow"> <cite> <img alt="小米（MIUI）小米电视 2 40英寸" src="_IMG_/20150402181532388.jpg" border="0" width="100" height="100"></cite> </a>
-						</li>
-
-					</ul>
-				</div>
-
-				<div class="commodity">
-					<ul>
-						<li class="comm-info fl">
-							<span><a href="http://www.1yyg.com/products/22153.html" target="_blank" title="苹果（Apple）MacBook 12英寸笔记本电脑 256GB 闪存">苹果（Apple）MacBook 12英寸笔记本电脑 256GB 闪存</a></span>
-							<p class="gray">
-								已参与<em class="orange">20</em>人次
-							</p>
-						</li>
-						<li class="comm-pic fr">
-							<a href="http://www.1yyg.com/products/22153.html" target="_blank" title="苹果（Apple）MacBook 12英寸笔记本电脑 256GB 闪存" rel="nofollow"> <cite> <img alt="苹果（Apple）MacBook 12英寸笔记本电脑 256GB 闪存" src="_IMG_/20150312141745541.jpg" border="0" width="100" height="100"></cite> </a>
-						</li>
-
-					</ul>
-				</div>
-
+				<foreach name="t_new_list" item="v">
+					<div class="commodity">
+						<ul>
+							<li class="comm-info fl">
+								<span><a href="{$v.goods_id|getGoodsUrl}" target="_blank" title="{$v.goods_name}">{$v.goods_name}</a></span>
+								<p class="gray">
+									已参与<em class="orange">{$v.buyer_count}</em>人次
+								</p>
+							</li>
+							<li class="comm-pic fr">
+								<a href="{$v.goods_id|getGoodsUrl}" target="_blank" title="{$v.goods_name}" rel="nofollow"> <cite> <img alt="{$v.goods_name}" src="_UPIMG_/{$v.goods_image}" border="0" width="100" height="100"></cite> </a>
+							</li>
+						</ul>
+					</div>
+				</foreach>
 			</div>
 		</div>
 		<div class="home-event fr">
 			<div class="what-1yyg">
-				<a id="what_1yyg" href="javascript:void(0);" title="什么是1元云购？30秒了解"> <img src="_IMG_/index-come.gif" alt=""></a>
+				<a id="what_1yyg" href="javascript:void(0);" title="快速了解一元幸运购"> <img src="_IMG_/quick-start.png" alt="快速了解一元幸运购"></a>
 			</div>
-			<div class="honesty">
-				<ul>
-					<li>
-						<a href="http://info.1yyg.com/sincerity/index.html" target="_blank" title="诚信网站"><i class="i1"></i>诚信网站</a>
-					</li>
-					<li>
-						<a href="http://info.1yyg.com/sincerity/index.html#rz2" target="_blank" rel="nofollow" title="可信网站"><i class="i2"></i>可信网站</a>
-					</li>
-					<li>
-						<a href="http://info.1yyg.com/sincerity/index.html#rz3" target="_blank" rel="nofollow" title="电商诚信"><i class="i3"></i>电商诚信</a>
-					</li>
-					<li>
-						<a href="http://info.1yyg.com/sincerity/index.html#rz4" target="_blank" rel="nofollow" title="安信宝"><i class="i4"></i>安信宝</a>
-					</li>
-					<li>
-						<a href="http://info.1yyg.com/sincerity/index.html#rz5" target="_blank" rel="nofollow" title="监督管理局"><i class="i5"></i>监督管理局</a>
-					</li>
-					<li>
-						<a href="http://info.1yyg.com/sincerity/index.html" target="_blank" rel="nofollow" title="更多"><i class="i6"></i>更多</a>
-					</li>
-				</ul>
+			<div class="honesty" style="text-align: center;">
+				<img src="_IMG_/qrcode.png" style="margin-left: 45px; margin-top: 6px;"  title="扫码访问" alt="扫码访问"/>
+				<!-- <ul>
+				<li>
+				<a href="http://info.1yyg.com/sincerity/index.html" target="_blank" title="诚信网站"><i class="i1"></i>诚信网站</a>
+				</li>
+				<li>
+				<a href="http://info.1yyg.com/sincerity/index.html#rz2" target="_blank" rel="nofollow" title="可信网站"><i class="i2"></i>可信网站</a>
+				</li>
+				<li>
+				<a href="http://info.1yyg.com/sincerity/index.html#rz3" target="_blank" rel="nofollow" title="电商诚信"><i class="i3"></i>电商诚信</a>
+				</li>
+				<li>
+				<a href="http://info.1yyg.com/sincerity/index.html#rz4" target="_blank" rel="nofollow" title="安信宝"><i class="i4"></i>安信宝</a>
+				</li>
+				<li>
+				<a href="http://info.1yyg.com/sincerity/index.html#rz5" target="_blank" rel="nofollow" title="监督管理局"><i class="i5"></i>监督管理局</a>
+				</li>
+				<li>
+				<a href="http://info.1yyg.com/sincerity/index.html" target="_blank" rel="nofollow" title="更多"><i class="i6"></i>更多</a>
+				</li>
+				</ul> -->
 			</div>
 			<div class="index_news">
 				<dl>
 					<dt>
 						新闻公告
 					</dt>
-
-					<dd>
-						<b></b><a href="http://group.1yyg.com/topic-9507.html" target="_blank" title="2015年1元云购五一放假通知">2015年1元云购五一放假通知</a>
-					</dd>
-
-					<dd>
-						<b></b><a href="http://group.1yyg.com/topic-9439.html" target="_blank" title="关于合购、合资、代购等警示公告">关于合购、合资、代购等警示公告</a>
-					</dd>
-
-					<dd>
-						<b></b><a href="http://group.1yyg.com/topic-8874.html" target="_blank" title="1元云购2015年春节放假及发货安排公告">1元云购2015年春节放假及发货安排公告</a>
-					</dd>
-
+					<foreach name="t_notice_list" item="v">
+						<dd>
+							<b></b><a href="{$v.notice_id|getArticleUrl}" target="_blank" title="{$v.title}"> · {$v.title|strCut=15}</a>
+						</dd>
+					</foreach>
 				</dl>
 			</div>
 		</div>
@@ -159,96 +136,31 @@
 <div class="g-wrap w1190">
 	<!--最新揭晓-->
 	<div class="g-title">
-		<h3 class="fl"><i></i>最新揭晓<span>截至目前共揭晓商品<em><a id="em_lotcount" href="http://www.1yyg.com/lottery/m1.html" target="_blank" style="display: inline;">430523</a></em>个</span></h3>
+		<h3 class="fl"><i></i>最新揭晓<span>截至目前共揭晓商品<em><a id="em_lotcount" href="http://www.1yyg.com/lottery/m1.html" target="_blank" style="display: inline;">{$finnish_count}</a></em>个</span></h3>
 		<div class="m-other fr">
-			<cite> <a href="http://www.1yyg.com/map.html" target="_blank" title="看看附近都有谁获得了商品？"><em></em>看看附近都有谁获得了商品？</a> </cite>
+			<cite> <a href="{:U('index/index')}" target="_blank" title="查看更多？"><em></em>查看更多...</a> </cite>
 		</div>
 	</div>
 	<div class="g-list">
-
 		<ul id="ul_Lottery">
-			<li id="502752" class="current">
-				<dl class="m-in-progress">
-					<dt>
-						<a href="http://www.1yyg.com/product/502752.html" target="_blank" title="多多堡 电影雪岭熊风熊出没毛绒玩具 少年熊大公仔 43cm"><img alt="多多堡 电影雪岭熊风熊出没毛绒玩具 少年熊大公仔 43cm" src="http://goodsimg.1yyg.com/goodspic/pic-200-200/20150428101822132.jpg"></a>
-					</dt>
-					<dd class="u-name">
-						<a href="http://www.1yyg.com/product/502752.html" title="(第137期)多多堡 电影雪岭熊风熊出没毛绒玩具 少年熊大公仔 43cm">(第137期)多多堡 电影雪岭熊风熊出没毛绒玩具 少年熊大公仔 43cm</a>
-					</dd>
-					<dd class="gray">
-						价值：￥118.00
-					</dd>
-					<dd class="u-time" id="dd_time">
+			<foreach name="t2_goods_list" item="v">
+				<li id="502752" class="current">
+					<dl class="m-in-progress">
+						<dt>
+							<a href="{$v.goods_id|getGoodsUrl}" target="_blank" title="{$v.goods_name}"><img alt="{$v.goods_name}" src="_UPIMG_/{$v.goods_image}"></a>
+						</dt>
+						<dd class="u-name">
+							<a href="http://www.1yyg.com/product/502752.html" title="{$v.goods_name}">{$v.goods_name}</a>
+						</dd>
+						<dd class="gray">
+							价值：￥{$v.shop_price}
+						</dd>
+						<!-- <dd class="u-time" id="dd_time">
 						<em>揭晓倒计时</em><span><b>02</b> : <b>54</b> : <b><i>9</i><i>3</i></b></span>
-					</dd>
-				</dl><s></s>
-			</li>
-			<li id="518922" class="current">
-				<dl class="m-in-progress">
-					<dt>
-						<a href="http://www.1yyg.com/product/518922.html" target="_blank" title="小米（MIUI）红米2 4G手机 移动版"><img alt="小米（MIUI）红米2 4G手机 移动版" src="_IMG_/20150115174143371.jpg"></a>
-					</dt>
-					<dd class="u-name">
-						<a href="http://www.1yyg.com/product/518922.html" title="(第10868期)小米（MIUI）红米2 4G手机 移动版">(第10868期)小米（MIUI）红米2 4G手机 移动版</a>
-					</dd>
-					<dd class="gray">
-						价值：￥799.00
-					</dd>
-					<dd class="u-time" id="dd_time">
-						<em>揭晓倒计时</em><span><b>01</b> : <b>51</b> : <b><i>8</i><i>1</i></b></span>
-					</dd>
-				</dl><s></s>
-			</li>
-			<li id="508691" class="current">
-				<dl class="m-in-progress">
-					<dt>
-						<a href="http://www.1yyg.com/product/508691.html" target="_blank" title="红牛（RedBull）维生素功能饮料（原味型）250ML*12罐"><img alt="红牛（RedBull）维生素功能饮料（原味型）250ML*12罐" src="_IMG_/20150312101045722.jpg"></a>
-					</dt>
-					<dd class="u-name">
-						<a href="http://www.1yyg.com/product/508691.html" title="(第28008期)红牛（RedBull）维生素功能饮料（原味型）250ML*12罐">(第28008期)红牛（RedBull）维生素功能饮料（原味型）250ML*12罐</a>
-					</dd>
-					<dd class="gray">
-						价值：￥73.00
-					</dd>
-					<dd class="u-time" id="dd_time">
-						<em>揭晓倒计时</em><span><b>01</b> : <b>22</b> : <b><i>8</i><i>1</i></b></span>
-					</dd>
-				</dl><s></s>
-			</li>
-			<li id="515192" class="current">
-				<dl class="m-in-progress">
-					<dt>
-						<a href="http://www.1yyg.com/product/515192.html" target="_blank" title="蒙牛 特仑苏 纯牛奶250ml*12盒 礼盒装"><img alt="蒙牛 特仑苏 纯牛奶250ml*12盒 礼盒装" src="_IMG_/20140813160215287.jpg"></a>
-					</dt>
-					<dd class="u-name">
-						<a href="http://www.1yyg.com/product/515192.html" title="(第13280期)蒙牛 特仑苏 纯牛奶250ml*12盒 礼盒装">(第13280期)蒙牛 特仑苏 纯牛奶250ml*12盒 礼盒装</a>
-					</dd>
-					<dd class="gray">
-						价值：￥65.00
-					</dd>
-					<dd class="u-time" id="dd_time">
-						正在计算,请稍后…
-					</dd>
-				</dl><s></s>
-			</li>
-			<li id="505278" class="col5">
-				<dl style="display: block;">
-					<dt>
-						<a href="http://www.1yyg.com/lottery/505278.html" target="_blank" title="OPPO R5（R8107）移动4G手机 金色"><img alt="OPPO R5（R8107）移动4G手机 金色" src="_IMG_/20150428153836621.jpg"></a>
-					</dt>
-					<dd class="f-gx">
-						<div class="f-gx-user">
-							<span>恭喜</span><span class="blue"><a href="http://u.1yyg.com/1008142142" title="卖了奔驰买云购" target="_blank">卖了奔驰买云购</a></span><span>获得</span>
-						</div>
-					</dd>
-					<dd class="u-name">
-						<a href="http://www.1yyg.com/lottery/505278.html" target="_blank" title=" (第6期)OPPO R5（R8107）移动4G手机 金色">(第6期)OPPO R5（R8107）移动4G手机 金色</a>
-					</dd>
-					<dd class="gray">
-						广东省中山市
-					</dd>
-				</dl><cite style="display: inline;"></cite>
-			</li>
+						</dd> -->
+					</dl><s></s>
+				</li>
+			</foreach>
 
 		</ul>
 	</div>
@@ -262,63 +174,45 @@
 	</div>
 	<div class="g-hot clrfix">
 		<div class="g-hotL fl" id="divHotGoodsList">
-			<div class="g-hotL-list">
+			<foreach name="commend_list" item="v">
+				<!--<div class="g-hotL-list">
 				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
+				<div class="u-loading">
+				<em></em>
 				</div>
-			</div>
-			<div class="g-hotL-list">
-				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
 				</div>
-			</div>
-			<div class="g-hotL-list">
-				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
+				</div>-->
+				<div class="g-hotL-list">
+					<div class="g-hotL-con">
+						<ul>
+							<li class="g-hot-pic">
+								<a href="{$v.goods_id|getGoodsUrl}" target="_blank" title="{$v.goods_name}"><img alt="{$v.goods_name}" src="_UPIMG_/{$v.goods_image}"></a>
+							</li>
+							<li class="g-hot-name">
+								<a href="{$v.goods_id|getGoodsUrl}" target="_blank" title="{$v.goods_name}">{$v.goods_name}</a>
+							</li>
+							<li class="gray">
+								价值：￥{$v.shop_price}
+							</li>
+							<li class="g-progress">
+								<dl class="m-progress">
+									<dt title="已完成{$v.seller_number|getPercent=$v['goods_number']}%">
+										<b style="width:{$v.seller_number|getPercent=$v['goods_number']}%;"></b>
+									</dt>
+									<dd>
+										<span class="orange fl"><em>{$v.seller_number}</em>已参与</span><span class="gray6 fl"><em>{$v.goods_number}</em>总需人次</span><span class="blue fr"><em>{$v.goods_number}</em>剩余</span>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<a href="products/21915.html" class="u-imm" target="_blank" title="立即1元云购">立即1元云购</a>
+							</li>
+						</ul>
+					</div><div class="u_buyCount" style="top:169px;" codeid="560609"></div>
 				</div>
-			</div>
-			<div class="g-hotL-list">
-				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
-				</div>
-			</div>
-			<div class="g-hotL-list">
-				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
-				</div>
-			</div>
-			<div class="g-hotL-list">
-				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
-				</div>
-			</div>
-			<div class="g-hotL-list">
-				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
-				</div>
-			</div>
-			<div class="g-hotL-list">
-				<div class="g-hotL-con">
-					<div class="u-loading">
-						<em></em>
-					</div>
-				</div>
-			</div>
+			</foreach>
 		</div>
+
 		<div class="g-hotR fr">
 			<div class="u-are">
 				正在云购
@@ -326,244 +220,112 @@
 			<div class="g-zzyging">
 				<input name="hidBuyID" type="hidden" id="hidBuyID" value="43639534">
 				<ul id="UserBuyNewList">
+					<foreach name="order_list" item="v">
+						<li>
+							<span class="fl"><a href="#" target="_blank" rel="nofollow" title="{$v.extend_member.name}"> <img alt="" src="_UPIMG_/{$v.extend_member.member_face}"><i></i></a></span>
+							<p>
+								<a href="#" target="_blank" title="{$v.extend_member.name}" class="blue">{$v.extend_member.name}</a>
+								<br>
+								<a href="{$v.extend_goods_info.goods_id|getGoodsUrl}" target="_blank" title="{$v.extend_goods_info.goods_name}" class="u-ongoing">{$v.extend_goods_info.goods_name}</a>
+							</p>
+						</li>
+					</foreach>
 
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008142142" target="_blank" rel="nofollow" title="卖了奔驰买云购"> <img alt="" src="_IMG_/20150430105253495.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008142142" target="_blank" title="卖了奔驰买云购" class="blue">卖了奔驰买云购</a>
-							<br>
-							<a href="http://www.1yyg.com/product/518923.html" target="_blank" title="小米（MIUI）红米2 4G手机 移动版" class="u-ongoing">小米（MIUI）红米2 4G手机 移动版</a>
-						</p>
+					<!-- <li>
+					<span class="fl"><a href="http://u.1yyg.com/1008142142" target="_blank" rel="nofollow" title="卖了奔驰买云购"> <img alt="" src="_IMG_/20150430105253495.jpg"><i></i></a></span>
+					<p>
+					<a href="http://u.1yyg.com/1008142142" target="_blank" title="卖了奔驰买云购" class="blue">卖了奔驰买云购</a>
+					<br>
+					<a href="http://www.1yyg.com/product/512235.html" target="_blank" title="苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机 " class="u-ongoing">苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机 </a>
+					</p>
 					</li>
 
 					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008142142" target="_blank" rel="nofollow" title="卖了奔驰买云购"> <img alt="" src="_IMG_/20150430105253495.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008142142" target="_blank" title="卖了奔驰买云购" class="blue">卖了奔驰买云购</a>
-							<br>
-							<a href="http://www.1yyg.com/product/512235.html" target="_blank" title="苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机 " class="u-ongoing">苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机 </a>
-						</p>
+					<span class="fl"><a href="http://u.1yyg.com/1008659055" target="_blank" rel="nofollow" title="云购能让我中奖"> <img alt="" src="_IMG_/00000000000000000.jpg"><i></i></a></span>
+					<p>
+					<a href="http://u.1yyg.com/1008659055" target="_blank" title="云购能让我中奖" class="blue">云购能让我中奖</a>
+					<br>
+					<a href="http://www.1yyg.com/product/472388.html" target="_blank" title="小米（MIUI）红米1S 4G手机 移动版" class="u-ongoing">小米（MIUI）红米1S 4G手机 移动版</a>
+					</p>
 					</li>
 
 					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008659055" target="_blank" rel="nofollow" title="云购能让我中奖"> <img alt="" src="_IMG_/00000000000000000.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008659055" target="_blank" title="云购能让我中奖" class="blue">云购能让我中奖</a>
-							<br>
-							<a href="http://www.1yyg.com/product/472388.html" target="_blank" title="小米（MIUI）红米1S 4G手机 移动版" class="u-ongoing">小米（MIUI）红米1S 4G手机 移动版</a>
-						</p>
-					</li>
-
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008557167" target="_blank" rel="nofollow" title="云哥给个6吧"> <img alt="" src="_IMG_/20150504191810256.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008557167" target="_blank" title="云哥给个6吧" class="blue">云哥给个6吧</a>
-							<br>
-							<a href="http://www.1yyg.com/product/498264.html" target="_blank" title="苹果（Apple）iPhone 6 A1586 16G版 4G手机" class="u-ongoing">苹果（Apple）iPhone 6 A1586 16G版 4G手机</a>
-						</p>
-					</li>
-
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008527727" target="_blank" rel="nofollow" title="羽陌灭了你大爷的不中"> <img alt="" src="_IMG_/20150503161836144.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008527727" target="_blank" title="羽陌灭了你大爷的不中" class="blue">羽陌灭了你大爷的不中</a>
-							<br>
-							<a href="http://www.1yyg.com/product/498962.html" target="_blank" title="小米（MIUI）红米2 4G手机 移动版" class="u-ongoing">小米（MIUI）红米2 4G手机 移动版</a>
-						</p>
-					</li>
-
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008393171" target="_blank" rel="nofollow" title="13869****99"> <img alt="" src="_IMG_/00000000000000000.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008393171" target="_blank" title="13869****99" class="blue">13869****99</a>
-							<br>
-							<a href="http://www.1yyg.com/product/498748.html" target="_blank" title="苹果（Apple）iPhone 6 Plus A1524 64G版 4G手机" class="u-ongoing">苹果（Apple）iPhone 6 Plus A1524 64G版 4G手机</a>
-						</p>
-					</li>
-
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008393171" target="_blank" rel="nofollow" title="13869****99"> <img alt="" src="_IMG_/00000000000000000.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008393171" target="_blank" title="13869****99" class="blue">13869****99</a>
-							<br>
-							<a href="http://www.1yyg.com/product/498279.html" target="_blank" title="苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机" class="u-ongoing">苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机</a>
-						</p>
-					</li>
-
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008393171" target="_blank" rel="nofollow" title="13869****99"> <img alt="" src="_IMG_/00000000000000000.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008393171" target="_blank" title="13869****99" class="blue">13869****99</a>
-							<br>
-							<a href="http://www.1yyg.com/product/501366.html" target="_blank" title="苹果（Apple）iPhone 6 Plus A1524 64G版 4G手机" class="u-ongoing">苹果（Apple）iPhone 6 Plus A1524 64G版 4G手机</a>
-						</p>
-					</li>
-
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008393171" target="_blank" rel="nofollow" title="13869****99"> <img alt="" src="_IMG_/00000000000000000.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008393171" target="_blank" title="13869****99" class="blue">13869****99</a>
-							<br>
-							<a href="http://www.1yyg.com/product/510715.html" target="_blank" title="苹果（Apple）iPhone 6 Plus A1524 128G版 4G手机" class="u-ongoing">苹果（Apple）iPhone 6 Plus A1524 128G版 4G手机</a>
-						</p>
-					</li>
-
-					<li>
-						<span class="fl"><a href="http://u.1yyg.com/1008682462" target="_blank" rel="nofollow" title="没意思啊呃呃呃"> <img alt="" src="_IMG_/00000000000000000.jpg"><i></i></a></span>
-						<p>
-							<a href="http://u.1yyg.com/1008682462" target="_blank" title="没意思啊呃呃呃" class="blue">没意思啊呃呃呃</a>
-							<br>
-							<a href="http://www.1yyg.com/product/514225.html" target="_blank" title="小米（MIUI）16000mAh 移动电源" class="u-ongoing">小米（MIUI）16000mAh 移动电源</a>
-						</p>
-					</li>
+					<span class="fl"><a href="http://u.1yyg.com/1008557167" target="_blank" rel="nofollow" title="云哥给个6吧"> <img alt="" src="_IMG_/20150504191810256.jpg"><i></i></a></span>
+					<p>
+					<a href="http://u.1yyg.com/1008557167" target="_blank" title="云哥给个6吧" class="blue">云哥给个6吧</a>
+					<br>
+					<a href="http://www.1yyg.com/product/498264.html" target="_blank" title="苹果（Apple）iPhone 6 A1586 16G版 4G手机" class="u-ongoing">苹果（Apple）iPhone 6 A1586 16G版 4G手机</a>
+					</p>
+					</li> -->
 
 				</ul>
 			</div>
 			<div class="u-see100">
-				<a href="http://www.1yyg.com/newestBuyRecords.html" target="_blank">查看最新100条记录</a>
+				<!-- <a href="http://www.1yyg.com/newestBuyRecords.html" target="_blank">查看最新100条记录</a> -->
 			</div>
 		</div>
 	</div>
 
-	<!--即将揭晓-->
+	<!--新品-->
 	<div class="g-title m-sort">
-		<h3 class="fl"><i></i>即将揭晓</h3>
+		<h3 class="fl"><i></i>新品发布</h3>
 		<div class="fr">
-			<a href="http://www.1yyg.com/list/i100.html" target="_blank" title="手机数码">手机数码</a>
-			<a href="http://www.1yyg.com/list/i106.html" target="_blank" title="电脑办公">电脑办公</a>
-			<a href="http://www.1yyg.com/list/i104.html" target="_blank" title="家用电器">家用电器</a>
-			<a href="http://www.1yyg.com/list/i2.html" target="_blank" title="化妆个护">化妆个护</a>
-			<a href="http://www.1yyg.com/list/i222.html" target="_blank" title="钟表首饰">钟表首饰</a>
-			<a href="http://www.1yyg.com/list/i312.html" target="_blank" title="其他商品">其他商品</a>
-			<a href="http://www.1yyg.com/list/m1.html" target="_blank" title="全部">全部</a>
+			<?php $i=0;?>
+			<foreach name="class_list" item="v" key="key">
+				<if condition="$i lt 6 && $v.parent_id eq 0">
+					<input type="hidden" value="{$i++}">
+					<a href="{:getUrl('search','index',array('class_id'=>$v['class_id']))}" target="_blank" title="{$v.class_name}">{$v.class_name}</a>
+				</if>
+			</foreach>
+			<a href="{:getUrl('search/index',array('class_id'=>0))}" title="全部">全部</a>
 		</div>
 	</div>
 	<div class="announced-soon clrfix" id="divSoonGoodsList">
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
+		<foreach name="new_list" item="v">
+			<div class="soon-list-con" idx="1">
+				<div class="soon-list">
+					<ul>
+						<li class="g-soon-pic">
+							<a href="{$v.goods_id|getGoodsUrl}" target="_blank" title="{$v.goods_jingle}"><img id="" alt="{$v.goods_name}" src="_UPIMG_/{$v.goods_image}"></a>
+						</li>
+						<li class="soon-list-name">
+							<a href="products/22272.html" target="_blank" title="{$v.goods_jingle}">{$v.goods_name}</a>
+						</li>
+						<li class="gray">
+							价值：￥{$v.shop_price}
+						</li>
+						<li class="g-progress">
+							<!-- <dl class="m-progress">
+							<dt title="已完成77.06%">
+							<b style="width:77.06%;"></b>
+							</dt>
+							<dd>
+							<span class="orange fl"><em>2234</em>已参与</span><span class="gray6 fl"><em>2899</em>总需人次</span><span class="blue fr"><em>665</em>剩余</span>
+							</dd>
+							</dl> -->
+							<dl class="m-progress">
+								<dt title="已完成{$v.seller_number|getPercent=$v['goods_number']}%">
+									<b style="width:{$v.seller_number|getPercent=$v['goods_number']}%;"></b>
+								</dt>
+								<dd>
+									<span class="orange fl"><em>{$v.seller_number}</em>已参与</span><span class="gray6 fl"><em>{$v.goods_number}</em>总需人次</span><span class="blue fr"><em>{$v.goods_number}</em>剩余</span>
+								</dd>
+							</dl>
+
+						</li>
+						<li>
+							<a href="products/22272.html" target="_blank" title="立即1元幸运购购" class="u-now">立即1元幸运购购</a><a href="javascript:;" title="加入到购物车" codeid="552370" surplus="665" class="u-cart" style="color: #000;line-height: 38px;">++购物车</a>
+						</li>
+					</ul>
+					<div class="f-callout">
+						<span class="F_goods_xg transparent-png">限购</span>
+					</div>
+				</div><div class="u_buyCount" style="top:200px;" codeid="552370"></div>
 			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
+		</foreach>
 	</div>
 	<div class="check-out">
-		<a href="http://www.1yyg.com/list/m1.html" target="_blank" title="查看所有商品">查看所有商品</a>
-	</div>
-
-	<!--新品上架-->
-	<div class="g-title">
-		<h3 class="fl"><i></i>新品上架</h3>
-		<div class="m-other fr">
-			<a href="http://www.1yyg.com/list/m1.html?r=50" target="_blank" title="更多" class="u-more">更多</a>
-		</div>
-	</div>
-	<div class="announced-soon clrfix announced-soon-new" id="divNewGoodsList">
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
-		<div class="soon-list-con">
-			<div class="soon-list">
-				<div class="u-loading">
-					<em></em>
-				</div>
-			</div>
-		</div>
+		<a href="{:getUrl('search/index',array('class_id'=>0))}" target="_blank" title="查看所有商品">查看所有商品</a>
 	</div>
 
 	<!--晒单分享-->
@@ -574,44 +336,65 @@
 		</div>
 	</div>
 	<div class="g-single-sun">
-		<div class="singleL fl" id="divPostRec">
-			<div class="u-loading">
-				<em></em>
-			</div>
-		</div>
+		
 		<div class="singleR fl">
 			<ul id="ul_PostList">
 				<li>
-					<div class="u-loading">
-						<em></em>
-					</div>
+					<a href="http://post.1yyg.com/detail-68715.html" target="_blank" title="终于中了台手机"><cite><img alt="终于中了台手机" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150525140734470.jpg"></cite>
+					<p title="终于中了台手机">
+						终于中了台手机
+					</p></a>
 				</li>
 				<li>
-					<div class="u-loading">
-						<em></em>
-					</div>
+					<a href="http://post.1yyg.com/detail-68464.html" target="_blank" title="心想事成0.0"><cite><img alt="心想事成0.0" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150527101125922.jpg"></cite>
+					<p title="心想事成0.0">
+						心想事成0.0
+					</p></a>
 				</li>
 				<li>
-					<div class="u-loading">
-						<em></em>
-					</div>
+					<a href="http://post.1yyg.com/detail-68130.html" target="_blank" title="中了个熊大，不错哦"><cite><img alt="中了个熊大，不错哦" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150519084549877.jpg"></cite>
+					<p title="中了个熊大，不错哦">
+						中了个熊大，不错哦
+					</p></a>
 				</li>
 				<li>
-					<div class="u-loading">
-						<em></em>
-					</div>
+					<a href="http://post.1yyg.com/detail-68094.html" target="_blank" title="小米，小米，你真好！！！"><cite><img alt="小米，小米，你真好！！！" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150520102556824.jpg"></cite>
+					<p title="小米，小米，你真好！！！">
+						小米，小米，你真好！！！
+					</p></a>
 				</li>
 				<li>
-					<div class="u-loading">
-						<em></em>
-					</div>
+					<a href="http://post.1yyg.com/detail-67904.html" target="_blank" title="4元中的6p，不敢相信啊！！！"><cite><img alt="4元中的6p，不敢相信啊！！！" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150518092312505.jpg"></cite>
+					<p title="4元中的6p，不敢相信啊！！！">
+						4元中的6p，不敢相信啊！！！
+					</p></a>
 				</li>
 				<li>
-					<div class="u-loading">
-						<em></em>
-					</div>
+					<a href="http://post.1yyg.com/detail-67812.html" target="_blank" title="专中小东西，能中个大奖有多好"><cite><img alt="专中小东西，能中个大奖有多好" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150521182135440.jpg"></cite>
+					<p title="专中小东西，能中个大奖有多好">
+						专中小东西，能中个大奖有多好
+					</p></a>
 				</li>
 			</ul>
+		</div>
+		
+		<div class="singleL fl" id="divPostRec">
+			<dl>
+				<dt>
+					<a href="http://post.1yyg.com/detail-68775.html" target="_blank" title="我又来了，第三弹，魅族手机！"><img src="http://postimg.1yyg.com/UserPost/RecHome/20150525141742369.jpg"></a>
+				</dt>
+				<dd class="u-user">
+					<p class="u-head">
+						<a href="http://u.1yyg.com/1008188877" target="_blank" title="还不中就破产了"><img alt="我又来了，第三弹，魅族手机！" src="http://faceimg.1yyg.com/UserFace/20150523200623398.jpg" width="40" height="40"><i></i></a>
+					</p>
+					<p class="u-info">
+						<span><a href="http://u.1yyg.com/1008188877" target="_blank" title="还不中就破产了">还不中就破产了</a><em>05月25日 14:17</em></span><cite><a href="http://post.1yyg.com/detail-68775.html" target="_blank" title="我又来了，第三弹，魅族手机！">我又来了，第三弹，魅族手机！</a></cite>
+					</p>
+				</dd>
+				<dd class="m-summary">
+					<cite><a href="http://post.1yyg.com/detail-68775.html" target="_blank">今天终于收到魅蓝note了，之前用的是htc m7，照相大姨妈，心里一直烦躁的很，早就有想换手机的念头了。。。之后发…</a></cite><b><s></s></b>
+				</dd>
+			</dl>
 		</div>
 	</div>
 </div>
