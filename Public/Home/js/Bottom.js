@@ -1,1 +1,1 @@
-Base.getScript("http://skin.1yyg.com/JS/BottomFun.js?date=150421");
+Base.getScript("/public/home/js/BottomFun.js?date=150421");

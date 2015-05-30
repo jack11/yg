@@ -155,9 +155,9 @@
 						<dd class="gray">
 							价值：￥{$v.shop_price}
 						</dd>
-						<!-- <dd class="u-time" id="dd_time">
-						<em>揭晓倒计时</em><span><b>02</b> : <b>54</b> : <b><i>9</i><i>3</i></b></span>
-						</dd> -->
+						<dd class="u-time" id="dd_time">
+						<em style="float: none;">即将揭晓</em>
+						</dd>
 					</dl><s></s>
 				</li>
 			</foreach>
@@ -332,67 +332,58 @@
 	<div class="g-title">
 		<h3 class="fl"><i></i>晒单分享</h3>
 		<div class="m-other fr">
-			<a href="http://post.1yyg.com/" target="_blank" title="更多" class="u-more">更多</a>
+			<a href="{:getURl('share/index')}" target="_blank" title="更多" class="u-more">更多</a>
 		</div>
 	</div>
 	<div class="g-single-sun">
+		<div class="singleL fl" id="divPostRec">
+			<dl>
+				<dt>
+					<a href="" target="_blank" title="{$share1.title}"><img src="_UPIMG_/{$share1.image}"></a>
+				</dt>
+				<dd class="u-user">
+					<p class="u-head">
+						<a href="" target="_blank" title="{$share1.username}"><img alt="{$share1.title}" src="_UPIMG_/{$shar1.image}" width="40" height="40"><i></i></a>
+					</p>
+					<p class="u-info">
+						<span><a href="" target="_blank" title="{$share1.title}">{$share1.title}</a><em>{$share1.add_time|date="Y-m-d H:i:s",###}</em></span><cite><a href="" target="_blank" title="{$share1.title}">{$share1.title}</a></cite>
+					</p>
+				</dd>
+				<dd class="m-summary">
+					<cite><a href="" target="_blank">{$share1.content|strCut=50}</a></cite><b><s></s></b>
+				</dd>
+			</dl>
+		</div>
+		
 		
 		<div class="singleR fl">
 			<ul id="ul_PostList">
+				<foreach name="share2_list" item="v">
 				<li>
-					<a href="http://post.1yyg.com/detail-68715.html" target="_blank" title="终于中了台手机"><cite><img alt="终于中了台手机" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150525140734470.jpg"></cite>
-					<p title="终于中了台手机">
-						终于中了台手机
+					<a href="{:getUrl('share/detail',array('id'=>$v.id))}" target="_blank" title="{$v.title}"><cite><img alt="{$v.title}" src="_UPIMG_/{$v.image}"></cite>
+					<p title="{$v.title}">
+						{$v.title}
 					</p></a>
 				</li>
-				<li>
-					<a href="http://post.1yyg.com/detail-68464.html" target="_blank" title="心想事成0.0"><cite><img alt="心想事成0.0" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150527101125922.jpg"></cite>
-					<p title="心想事成0.0">
-						心想事成0.0
-					</p></a>
-				</li>
-				<li>
-					<a href="http://post.1yyg.com/detail-68130.html" target="_blank" title="中了个熊大，不错哦"><cite><img alt="中了个熊大，不错哦" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150519084549877.jpg"></cite>
-					<p title="中了个熊大，不错哦">
-						中了个熊大，不错哦
-					</p></a>
-				</li>
-				<li>
-					<a href="http://post.1yyg.com/detail-68094.html" target="_blank" title="小米，小米，你真好！！！"><cite><img alt="小米，小米，你真好！！！" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150520102556824.jpg"></cite>
-					<p title="小米，小米，你真好！！！">
-						小米，小米，你真好！！！
-					</p></a>
-				</li>
-				<li>
-					<a href="http://post.1yyg.com/detail-67904.html" target="_blank" title="4元中的6p，不敢相信啊！！！"><cite><img alt="4元中的6p，不敢相信啊！！！" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150518092312505.jpg"></cite>
-					<p title="4元中的6p，不敢相信啊！！！">
-						4元中的6p，不敢相信啊！！！
-					</p></a>
-				</li>
-				<li>
-					<a href="http://post.1yyg.com/detail-67812.html" target="_blank" title="专中小东西，能中个大奖有多好"><cite><img alt="专中小东西，能中个大奖有多好" src="http://postimg.1yyg.com/UserPost/RecHome/small/20150521182135440.jpg"></cite>
-					<p title="专中小东西，能中个大奖有多好">
-						专中小东西，能中个大奖有多好
-					</p></a>
-				</li>
+				</foreach>
 			</ul>
 		</div>
 		
 		<div class="singleL fl" id="divPostRec">
 			<dl>
 				<dt>
-					<a href="http://post.1yyg.com/detail-68775.html" target="_blank" title="我又来了，第三弹，魅族手机！"><img src="http://postimg.1yyg.com/UserPost/RecHome/20150525141742369.jpg"></a>
+					<a href="" target="_blank" title="{$share3.title}"><img src="_UPIMG_/{$share3.image}"></a>
 				</dt>
 				<dd class="u-user">
 					<p class="u-head">
-						<a href="http://u.1yyg.com/1008188877" target="_blank" title="还不中就破产了"><img alt="我又来了，第三弹，魅族手机！" src="http://faceimg.1yyg.com/UserFace/20150523200623398.jpg" width="40" height="40"><i></i></a>
+						<a href="" target="_blank" title="{$share3.username}"><img alt="{$share3.title}" src="_UPIMG_/{$shar3.image}" width="40" height="40"><i></i></a>
 					</p>
 					<p class="u-info">
-						<span><a href="http://u.1yyg.com/1008188877" target="_blank" title="还不中就破产了">还不中就破产了</a><em>05月25日 14:17</em></span><cite><a href="http://post.1yyg.com/detail-68775.html" target="_blank" title="我又来了，第三弹，魅族手机！">我又来了，第三弹，魅族手机！</a></cite>
+						<span><a href="" target="_blank" title="{$share1.title}">{$share3.title}</a><em>{$share3.add_time|date="Y-m-d H:i:s",###}</em></span><cite><a href="" target="_blank" title="{$share1.title}">{$share3.title}</a></cite>
 					</p>
 				</dd>
 				<dd class="m-summary">
-					<cite><a href="http://post.1yyg.com/detail-68775.html" target="_blank">今天终于收到魅蓝note了，之前用的是htc m7，照相大姨妈，心里一直烦躁的很，早就有想换手机的念头了。。。之后发…</a></cite><b><s></s></b>
+					<cite><a href="" target="_blank">{$share3.content|strCut=50}</a></cite><b><s></s></b>
 				</dd>
 			</dl>
 		</div>

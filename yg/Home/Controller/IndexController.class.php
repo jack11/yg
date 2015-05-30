@@ -48,7 +48,29 @@ class IndexController extends BaseController {
 		$this->assign('new_list',$new_list);
 		
 		//晒单
+		$m_share = D('Share');
+		$m_member = D('Member');
+		$share_list = $m_share->getList(array(),6);
+		//第一个
+		$share1 = $share_list[0];
+		unset($share_list[0]);
+		$member_info = $m_member->getOne(array('member_id'=>$share1['member_id']));
+		$share1 = array_merge($share1,$member_info);
+		$this->assign('share1',$share1);
 		
+		//第六个
+		$share3 = $share_list[5];
+		unset($share_list[5]);
+		$member_info = $m_member->getOne(array('member_id'=>$share3['member_id']));
+		$share3 = array_merge($share3,$member_info);
+		$this->assign('share3',$share3);
+		
+		//2,3,4,5个
+		foreach ($share_list as $key => $value) {
+			$member_info = $m_member->getOne(array('member_id'=>$value['member_id']));
+			$share_list[$key] = array_merge($value,$member_info);
+		}
+		$this->assign('share2_list',$share_list);
 		
 		$this->display('Index/index');
     }

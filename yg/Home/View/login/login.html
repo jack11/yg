@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+
+<meta charset="utf-8">
+<title>{:C('setting.site_name')}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="_CSS_/supersized.css">
+<link rel="stylesheet" href="_CSS_/login.css">
+<link href="_CSS_/bootstrap.min.css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+<![endif]-->
+<script type="text/javascript" src="_JS_/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="_JS_/jquery.form.js"></script>
+<script type="text/javascript" src="_JS_/tooltips.js"></script>
+<!-- <script type="text/javascript" src="_JS_/login.js"></script> -->
+<script type="text/javascript" src="_JS_/supersized.3.2.7.min.js"></script>
+<script type="text/javascript" src="_JS_/supersized-init.js"></script>
+<script type="text/javascript" src="_JS_/scripts.js"></script>
+</head>
+
+<body>
+
+<div class="page-container">
+	<div class="main_box">
+		<div class="login_box">
+			<div class="login_logo"><a href="/">
+				<img src="_UPIMG_/{:C('setting.site_logo')}" ></a>
+			</div>
+		
+			<div class="login_form">
+				<form action="{:getUrl('login/login')}" id="login_form" method="post">
+					<div class="form-group">
+						<label for="j_username" class="t">账　号：</label> 
+						<input id="email" value="" name="username" type="text" class="form-control x319 in" 
+						autocomplete="off">
+					</div>
+					<div class="form-group">
+						<label for="j_password" class="t">密　码：</label> 
+						<input id="password" value="" name="password" type="password" 
+						class="password form-control x319 in">
+					</div>
+					<div class="form-group">
+						<label for="j_captcha" class="t">验证码：</label>
+						 <input id="j_captcha" name="code" type="text" class="form-control x164 in">
+						<img id="captcha_img" alt="点击更换" title="点击更换" src="{:getUrl('login/getCode')}" class="m" onclick="javascript:document.getElementById('captcha_img').src='{:getUrl('login/getCode')}/t/' + Math.random();">
+					</div>
+					<div class="form-group">
+						<label class="t"></label>
+						<label for="j_remember" class="m">
+						<input id="j_remember" type="checkbox" value="true">&nbsp;记住登陆账号</label> | <a href="{:getUrl('login/regist')}">还没账号？</a> | <a href="{:getUrl('login/password')}">忘记密码？</a>
+					</div>
+					<div class="form-group space">
+						<label class="t"></label>　　　
+						<button type="button"  id="submit_btn" 
+						class="btn btn-primary btn-lg" onclick="">&nbsp;登&nbsp;录&nbsp </button>
+						<input type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-default btn-lg">
+					</div>
+				</form>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<!-- Javascript -->
+
+
+<div style="text-align:center;">
+
+</div>
+</body>
+</html>
+
+<script>
+$(function(){
+	$('#submit_btn').click(function(){
+		$.post('{:getUrl("login/login")}',$('#login_form').serialize(),function(data){
+			if(data.state){
+				alert(data.message);
+				location.href = '/';
+			}else{
+				alert(data.message);
+			}
+		},'json')
+	})
+})
+
+	
+</script>
